@@ -1,24 +1,48 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { View, Text } from '../components/Themed';
+import {
+ SafeAreaView,  StyleSheet, ImageBackground, TextInput
+} from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import StudentList from './StudentList';
+
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.js" />
-    </View>
+    
+    <SafeAreaView style={styles.container}>
+      <View style={{ 
+          height: '100%', 
+          backgroundColor: 'transparent', 
+          flex: 1, 
+          width: '100%', 
+          borderRadius: 5,
+          paddingTop: '5%',
+           }}>
+          <TextInput style={{
+            borderColor: '#000000',
+            borderBottomWidth: 1,
+            marginLeft: 30,
+            marginRight: 30,
+            marginTop: 30,
+             padding:10,
+             height: '10%',
+              fontSize: 20}} 
+             placeholder="Type here to translate to heart" 
+             onChangeText={(text)=>console.log({text})}/>
+          <StudentList />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    flexDirection: 'row', 
+    height: '100%'
   },
   title: {
     fontSize: 20,
@@ -29,4 +53,15 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+
+   image: {
+    width: '100%', height: '100%'
+    // , justifyContent: 'flex-end'
+   },
+
+   linearGradient: {
+       flex: 1,
+       width: '100%',
+       borderRadius: 5
+      }
 });
