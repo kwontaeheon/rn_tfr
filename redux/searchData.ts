@@ -1,16 +1,16 @@
 // Actions
-const LOAD: 'app/students/LOAD' = 'app/students/LOAD';
-const CREATE: 'app/students/CREATE' = 'app/students/CREATE';
-const UPDATE: 'app/students/UPDATE' = 'app/students/UPDATE';
-const REMOVE: 'app/students/REMOVE' = 'app/students/REMOVE';
+const LOAD: 'app/searchData/LOAD' = 'app/searchData/LOAD';
+const CREATE: 'app/searchData/CREATE' = 'app/searchData/CREATE';
+const UPDATE: 'app/searchData/UPDATE' = 'app/searchData/UPDATE';
+const REMOVE: 'app/searchData/REMOVE' = 'app/searchData/REMOVE';
 
-export interface Student {
+export interface SearchData {
     key: string;
     name: string;
     class: number;
 }
 
-const initialState: ReadonlyArray<Student> = [
+const initialState: ReadonlyArray<SearchData> = [
     { key: '1', name: 'John', class: 2 },
     { key: '2', name: 'Tom', class: 5 },
     { key: '3', name: 'John', class: 2 },
@@ -27,7 +27,7 @@ const initialState: ReadonlyArray<Student> = [
 type Action = LoadAction | CreateAction | UpdateAction | RemoveAction;
 
 // Reducer
-export default function students(state: ReadonlyArray<Student> = initialState, action: Action) {
+export default function searchData(state: ReadonlyArray<SearchData> = initialState, action: Action) {
     switch (action.type) {
         case CREATE:
             return [...state, action.payload];
@@ -42,21 +42,21 @@ export default function students(state: ReadonlyArray<Student> = initialState, a
 
 // Action Creators
 interface LoadAction { type: typeof LOAD; }
-export function loadStudent(): LoadAction {
+export function loadSearchData(): LoadAction {
     return { type: LOAD };
 }
 
-interface CreateAction { type: typeof CREATE; payload: Student; }
-export function createStudent(payload: Student): CreateAction {
+interface CreateAction { type: typeof CREATE; payload: SearchData; }
+export function createSearchData(payload: SearchData): CreateAction {
     return { type: CREATE, payload };
 }
 
-interface UpdateAction { type: typeof UPDATE; payload: Student; }
-export function updateStudent(payload: Student): UpdateAction {
+interface UpdateAction { type: typeof UPDATE; payload: SearchData; }
+export function updateSearchData(payload: SearchData): UpdateAction {
     return { type: UPDATE, payload };
 }
 
-interface RemoveAction { type: typeof REMOVE; payload: Student; }
-export function removeStudent(payload: Student): RemoveAction {
+interface RemoveAction { type: typeof REMOVE; payload: SearchData; }
+export function removeSearchData(payload: SearchData): RemoveAction {
     return { type: REMOVE, payload };
 }

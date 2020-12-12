@@ -1,4 +1,4 @@
 import { createStore, combineReducers } from 'redux';
-import students from './students';
+import searchData from './searchData';
 
-export default createStore(combineReducers({ students }));
+export default createStore(combineReducers({ searchData }));

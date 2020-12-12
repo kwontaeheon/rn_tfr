@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
-import { Student } from '../redux/students';
+import { SearchData } from '../redux/searchData';
 import { connect } from 'react-redux';
 
-interface Props { students: ReadonlyArray<Student>; }
+interface Props { searchData: ReadonlyArray<SearchData>; }
 
-function StudentList({ students }: Props) {
+function SearchList({ searchData }: Props) {
     return (
-        <FlatList data={students} renderItem={_renderItem} style={styles.container} />
+        <FlatList data={searchData} renderItem={_renderItem} style={styles.container} />
     );
 }
 
-function _renderItem({ item }: { item: Student }) {
+function _renderItem({ item }: { item: SearchData }) {
     return (
         <TouchableOpacity style={styles.item}>
             <Text style={styles.title}>{item.name}</Text>
@@ -21,7 +21,7 @@ function _renderItem({ item }: { item: Student }) {
     );
 }
 
-export default connect(function ({ students }: Props) { return { students }; })(StudentList);
+export default connect(function ({ searchData }: Props) { return { searchData }; })(SearchList);
 
 const styles = StyleSheet.create({
     container: {

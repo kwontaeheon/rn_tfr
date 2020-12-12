@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { View, Text } from '../components/Themed';
 import {
- SafeAreaView,  StyleSheet, ImageBackground, TextInput
+ SafeAreaView,  StyleSheet, ImageBackground, TextInput, Dimensions
 } from 'react-native';
 
-import StudentList from './StudentList';
+import SearchList from './SearchList';
 
 
 export default function TabOneScreen() {
   return (
     
     <SafeAreaView style={styles.container}>
-      <View style={{ 
+      <ImageBackground source={require('../assets/images/green.jpg')} style={styles.image}>
+        <View style={{ 
           height: '100%', 
           backgroundColor: 'transparent', 
           flex: 1, 
@@ -22,25 +23,30 @@ export default function TabOneScreen() {
           <TextInput style={{
             borderColor: '#000000',
             borderBottomWidth: 1,
-            marginLeft: 30,
-            marginRight: 30,
+            marginLeft: 100,
+            marginRight: 100,
             marginTop: 30,
-             padding:10,
-             height: '10%',
-              fontSize: 20}} 
-             placeholder="Type here to translate to heart" 
+            padding: 7,
+            height: 50,
+            fontSize: 20,
+            textAlign: 'center'}} 
+             placeholder="찾아보기..." 
              onChangeText={(text)=>console.log({text})}/>
-          <StudentList />
+          <SearchList />
       </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
+
+const d = Dimensions.get("window")
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     // alignItems: 'center',
-    // justifyContent: 'center',
+    justifyContent: 'center',
     flexDirection: 'row', 
     height: '100%'
   },
@@ -55,8 +61,13 @@ const styles = StyleSheet.create({
   },
 
    image: {
-    width: '100%', height: '100%'
-    // , justifyContent: 'flex-end'
+    // width: '100%'
+    // , height: '100%'
+    width: d.width
+    , height: d.height
+    , position: 'absolute'
+    , resizeMode: 'repeat'
+    , justifyContent: 'center'
    },
 
    linearGradient: {

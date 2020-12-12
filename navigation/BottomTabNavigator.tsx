@@ -39,7 +39,7 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => 
           <TabBarIcon 
-           name="book" // "ios-contacts"
+           name="ios-pencil" // "ios-contacts"
            color={color} 
            />,
         }}
