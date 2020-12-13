@@ -3,66 +3,102 @@ import * as React from 'react';
 import { View, Text } from '../components/Themed';
 
 import {
- SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity
+ SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform
 } from 'react-native';
 
 
 import SearchList from './SearchList';
 
+const d = Dimensions.get("window")
 
 
 export default function TabTwoScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ 
-          height: '100%', 
-          backgroundColor: '#FFFFFF', 
-          flex: 1, 
-          width: '100%', 
-          borderRadius: 5,
-          paddingTop: '5%',
-          alignItems: 'center'
-           }}>
-          
-            <TextInput style={{
-                borderColor: '#000000',
-                borderBottomWidth: 1,
-                marginLeft: 30,
-                marginRight: 30,
-                marginTop: 30,
-                padding: 7,
-                height: 50,
-                fontSize: 20,
-                textAlign: 'center',
-                width: '80%'
-              }}
-                placeholder="제목" 
-                onChangeText={(text)=>console.log({text})}/>
+      
+      <View style={{
+        height: '100%', 
+        backgroundColor: '#333', 
+        flex: 1, 
+        width: '100%', 
+        borderRadius: 0,
+        paddingTop: '5%',
+        alignContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column'
+      }}
+        >
           
           
-          <TextInput style={{
-            borderColor: '#000000',
-            borderWidth: 1,
-            // marginLeft: 30,
-            // marginRight: 30,
-            marginTop: 30,
-            padding: 7,
-            height: '60%',
-            width: '80%',
-            fontSize: 20,
-            textAlign: 'left',
-            textAlignVertical: 'top',
-          }}
+            {/* <KeyboardAvoidingView style={{ 
+              height: '100%', 
+              backgroundColor: '#333', 
+              flex: 1, 
+              width: '100%', 
+              margin: 0,
+              padding: 7,
+              alignContent: 'center',
+                }}
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                keyboardVerticalOffset={100}
+                >
+               */}
+              <TextInput style={{
+              borderColor: '#FFF',
+              borderBottomWidth: 1,
+              marginLeft: 30,
+              marginRight: 30,
+              marginTop: 30,
+              paddingBottom: 5,
+              height: 60,
+              fontSize: 20,
+              textAlign: 'left',
+              width: '80%',
+              color: '#FFFFFF'
+            }}
+              placeholderTextColor="#FFFFFF"
+              placeholder="제목.." 
+              onChangeText={(text)=>console.log({text})}/>
             
-             multiline 
-             scrollEnabled
-             placeholder="내용" 
-             onChangeText={(text)=>console.log({text})}/>
-          <TouchableOpacity style={styles.button} 
-            onPress= {(text) => console.log({text})}>
-            <Text style={styles.buttonTitle}>작성완료</Text>
-          </TouchableOpacity>
-        </View>
+
+              <TextInput style={{
+                borderColor: '#FFFFFF',
+                // borderWidth: 1,
+                // marginLeft: 30,
+                // marginRight: 30,
+                marginTop: 30,
+                // marginBottom: 30,
+                padding: 20,
+                height: '70%',
+                width: '95%',
+                fontSize: 20,
+                textAlign: 'left',
+                textAlignVertical: 'top',
+                color: '#FFFFFF'
+                
+              }}
+                multiline 
+                scrollEnabled
+                placeholderTextColor="#FFFFFF"
+                placeholder="내용..." 
+                onChangeText={(text)=>console.log({text})}/>
+
+            
+            
+
+
+            <TouchableOpacity style={styles.button} 
+                onPress= {(text) => console.log({text})}
+                >
+                <Text style={styles.buttonTitle}
+                  
+                >작성완료</Text>
+             </TouchableOpacity>
+              {/* <View style={{height:50}}/> */}
+                {/* </KeyboardAvoidingView> */}
+                
+            </View>
+        
     </SafeAreaView>
     
   );
@@ -99,16 +135,21 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     alignItems: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: '#222',
-    marginTop: 40,
-    marginBottom: 40,
+    backgroundColor: "#fff",
+    display:'flex',
+    marginTop: 20,
+    marginBottom: 10,
     width: '80%',
-    height: 40,
-    borderRadius: 5,
+    height: 50,
+    padding: 10
   },
   buttonTitle: {
     fontSize: 20,
-    color: '#FFF'
+    color: '#000',
+    height: 30,
+    position: 'relative'
   }
 });

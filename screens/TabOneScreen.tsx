@@ -11,7 +11,7 @@ export default function TabOneScreen() {
   return (
     
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={require('../assets/images/green.jpg')} style={styles.image}>
+      <ImageBackground source={require('../assets/images/nyn.jpg')} style={styles.image}>
         <View style={{ 
           height: '100%', 
           backgroundColor: 'transparent', 
@@ -21,7 +21,7 @@ export default function TabOneScreen() {
           paddingTop: '5%',
            }}>
           <TextInput style={{
-            borderColor: '#000000',
+            borderColor: '#FFFFFF',
             borderBottomWidth: 1,
             marginLeft: 100,
             marginRight: 100,
@@ -29,8 +29,10 @@ export default function TabOneScreen() {
             padding: 7,
             height: 50,
             fontSize: 20,
+            color:  '#FFFFFF',
             textAlign: 'center'}} 
-             placeholder="찾아보기..." 
+             placeholderTextColor='#FFFFFF'
+             placeholder="찾아보기.." 
              onChangeText={(text)=>console.log({text})}/>
           <SearchList />
       </View>
