@@ -20,7 +20,7 @@ export default function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint ,
-        keyboardHidesTabBar: true,
+        keyboardHidesTabBar: false,
         showLabel: false,
       }}>
       <BottomTab.Screen

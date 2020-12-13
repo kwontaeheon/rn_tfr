@@ -17,7 +17,7 @@ export default function TabTwoScreen() {
     <SafeAreaView style={styles.container}>
       
       <View style={{
-        height: '100%', 
+        height: '90%', 
         backgroundColor: '#333', 
         flex: 1, 
         width: '100%', 
@@ -86,7 +86,13 @@ export default function TabTwoScreen() {
             
             
 
-
+    </View>
+    <View style={{
+      height: 50,
+      backgroundColor: '#333', 
+      width: '100%', 
+      
+    }}>
             <TouchableOpacity style={styles.button} 
                 onPress= {(text) => console.log({text})}
                 >
@@ -97,7 +103,7 @@ export default function TabTwoScreen() {
               {/* <View style={{height:50}}/> */}
                 {/* </KeyboardAvoidingView> */}
                 
-            </View>
+        </View>
         
     </SafeAreaView>
     
@@ -107,9 +113,9 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    flexDirection: 'row', 
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column', 
     height: '100%'
   },
   title: {
@@ -138,17 +144,20 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: "#fff",
+    borderTopColor: '#FFF',
+    borderTopWidth: 1,
+    backgroundColor: "#333",
     display:'flex',
-    marginTop: 20,
-    marginBottom: 10,
     width: '80%',
     height: 50,
-    padding: 10
+    paddingTop: 10,
+    paddingBottom: 10
+    // marginTop: 10,
+    // marginBottom: 10,
   },
   buttonTitle: {
     fontSize: 20,
-    color: '#000',
+    color: '#FFF',
     height: 30,
     position: 'relative'
   }
