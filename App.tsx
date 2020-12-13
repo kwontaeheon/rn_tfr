@@ -8,7 +8,6 @@ import Navigation from './navigation';
 
 import store from './redux/store';
 
-
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -19,7 +18,8 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Provider store={store}>
-        <Navigation colorScheme={colorScheme} />
+          
+          <Navigation colorScheme={colorScheme} />
         <StatusBar />
         </Provider >
       </SafeAreaProvider>

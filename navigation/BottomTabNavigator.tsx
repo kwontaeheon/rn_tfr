@@ -22,6 +22,7 @@ export default function BottomTabNavigator() {
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint ,
         keyboardHidesTabBar: false,
         showLabel: false,
+        
       }}>
       <BottomTab.Screen
         name="TabOne"
