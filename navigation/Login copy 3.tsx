@@ -14,7 +14,6 @@ export default function App({navigation}) {
     iosClientId: '705980003268-q5gu3rp1pc8mias8qoecd7lmcpl481mj.apps.googleusercontent.com',
     androidClientId: '705980003268-m4sjefkh31ieiu4m6gbc100pbit2c2jq.apps.googleusercontent.com',
     webClientId: '705980003268-8ct5qea5r1vge6ve3qk6sspq10h0bq82.apps.googleusercontent.com',
-    
   });
 
   React.useEffect(() => {
@@ -29,8 +28,7 @@ export default function App({navigation}) {
       disabled={!request}
       title="Login"
       onPress={() => {
-        
-        promptAsync({ useProxy: true, redirectUri })
+        promptAsync('https://localhost:19006');
         }}
     />
   );
