@@ -28,7 +28,7 @@ export default function TabOneScreen() {
             marginTop: 30,
             padding: 7,
             height: 50,
-            fontSize: 20,
+            fontSize: 15,
             color:  '#FFFFFF',
             textAlign: 'center'}} 
              placeholderTextColor='#FFFFFF'
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   title: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
   },
   separator: {

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     title: {
-        fontSize: 30,
+        fontSize: 15,
         
         color: '#FFFFFF',
         // fontWeight: 'bold'
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
     subtitle: {
         left: 10,
         color: '#FFFFFF',
-        fontSize: 20
+        fontSize: 15
     }
 });

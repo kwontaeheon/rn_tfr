@@ -11,6 +11,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { RootStackParamList } from '../types';
 
+let info = {}
 async function login({navigation}) {
     
   const config = {
@@ -35,6 +36,7 @@ async function login({navigation}) {
       // }
     // await Google.logOutAsync({ accessToken, ...config });
     /* `accessToken` is now invalid and cannot be used to get data from the Google API with HTTP requests */
+    
     navigation.replace('Root');
   }
 }

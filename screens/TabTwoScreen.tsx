@@ -50,8 +50,8 @@ export default function TabTwoScreen() {
               marginRight: 30,
               marginTop: 30,
               paddingBottom: 5,
-              height: 60,
-              fontSize: 20,
+              height: 40,
+              fontSize: 15,
               textAlign: 'left',
               width: '80%',
               color: '#FFFFFF'
@@ -71,7 +71,7 @@ export default function TabTwoScreen() {
                 padding: 20,
                 height: '70%',
                 width: '95%',
-                fontSize: 20,
+                fontSize: 15,
                 textAlign: 'left',
                 textAlignVertical: 'top',
                 color: '#FFFFFF'
@@ -88,7 +88,7 @@ export default function TabTwoScreen() {
 
     </View>
     <View style={{
-      height: 50,
+      height: 40,
       backgroundColor: '#333', 
       width: '100%', 
       
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     // marginBottom: 10,
   },
   buttonTitle: {
-    fontSize: 20,
+    fontSize: 15,
     color: '#FFF',
     height: 30,
     position: 'relative'
