@@ -1,3 +1,5 @@
+// https://github.com/aprofromindia/StudentList
+
 // Actions
 const LOAD: 'app/searchData/LOAD' = 'app/searchData/LOAD';
 const CREATE: 'app/searchData/CREATE' = 'app/searchData/CREATE';
@@ -7,20 +9,22 @@ const REMOVE: 'app/searchData/REMOVE' = 'app/searchData/REMOVE';
 export interface SearchData {
     key: string;
     name: string;
-    class: number;
+    id: string;
+    title: string;
+    diary: string;
 }
 
 const initialState: ReadonlyArray<SearchData> = [
-    { key: '1', name: 'John', class: 2 },
-    { key: '2', name: 'Tom', class: 5 },
-    { key: '3', name: 'John', class: 2 },
-    { key: '4', name: 'Tom', class: 5 },
-    { key: '5', name: 'John', class: 2 },
-    { key: '6', name: 'Tom', class: 5 },
-    { key: '7', name: 'John', class: 2 },
-    { key: '8', name: 'Tom', class: 5 },
-    { key: '9', name: 'Tom', class: 5 },
-    { key: '10', name: 'Tom', class: 5 }
+    { key: '1', name: 'John', id: '2', title: 'First Story', diary: 'story contents' },
+    { key: '2', name: 'Tom', id: '5', title: 'First Story', diary: 'story contents'  },
+    { key: '3', name: 'John', id: '2' , title: 'First Story', diary: 'story contents' },
+    { key: '4', name: 'Tom', id: '5' , title: 'First Story', diary: 'story contents' },
+    { key: '5', name: 'John', id: '2',title: 'First Story', diary: 'story contents' },
+    { key: '6', name: 'Tom', id: '5' , title: 'First Story', diary: 'story contents' },
+    { key: '7', name: 'John', id: '2' ,title: 'First Story', diary: 'story contents' },
+    { key: '8', name: 'Tom', id: '5' , title: 'First Story', diary: 'story contents' },
+    { key: '9', name: 'Tom', id: '5' ,title: 'First Story', diary: 'story contents' },
+    { key: '10', name: 'Tom', id: '5',title: 'First Story', diary: 'story contents' }
 
 ];
 
@@ -35,6 +39,8 @@ export default function searchData(state: ReadonlyArray<SearchData> = initialSta
             return state.map(item => item.key === action.payload.key ? action.payload : item);
         case REMOVE:
             return state.filter(item => item.key !== action.payload.key);
+        case LOAD:
+            return [...state];
         default:
             return state;
     }
@@ -43,6 +49,7 @@ export default function searchData(state: ReadonlyArray<SearchData> = initialSta
 // Action Creators
 interface LoadAction { type: typeof LOAD; }
 export function loadSearchData(): LoadAction {
+    console.log('load more!')
     return { type: LOAD };
 }
 

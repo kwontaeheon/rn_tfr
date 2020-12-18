@@ -22,7 +22,7 @@ export default function BottomTabNavigator() {
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint ,
         style: {
-         height : 35
+         height : 40
         },
         keyboardHidesTabBar: false,
         showLabel: false,
@@ -77,7 +77,7 @@ export default function BottomTabNavigator() {
 // https://icons.expo.fyi/
 
 function TabBarIcon(props: { name: string,  color: string }) {
-  return <Ionicons size={20} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={25} style={{ marginBottom: -3 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:

@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
     display:'flex',
     width: '80%',
     height: 50,
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: 20,
+    paddingBottom: 10,
     // marginTop: 10,
     // marginBottom: 10,
   },

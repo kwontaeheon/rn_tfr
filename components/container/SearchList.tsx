@@ -1,22 +1,25 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
-import { SearchData } from '../redux/searchData';
+import { SearchData } from '../../redux/searchData';
+import { LoadMoreSearchData } from './LoadMoreSearchData'
 import { connect } from 'react-redux';
 
 interface Props { searchData: ReadonlyArray<SearchData>; }
 
 function SearchList({ searchData }: Props) {
     return (
-        <FlatList data={searchData} renderItem={_renderItem} style={styles.container} />
+        <FlatList data={searchData} renderItem={_renderItem} onEndReached={LoadMoreSearchData} style={styles.container} />
     );
 }
+
+
 
 function _renderItem({ item }: { item: SearchData }) {
     return (
         <TouchableOpacity style={styles.item}>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.key}</Text>
-            <Text style={styles.subtitle}>{item.class}</Text>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.subtitle}>{item.diary}</Text>
+            {/* <Text style={styles.subtitle}>{item.class}</Text> */}
         </TouchableOpacity>
     );
 }

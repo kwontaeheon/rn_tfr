@@ -1,4 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 import searchData from './searchData';
 
-export default createStore(combineReducers({ searchData }));
+const store = createStore(combineReducers({ searchData }));  // searchData:  reducer 
+
+export default store;
+

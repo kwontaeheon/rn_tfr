@@ -4,7 +4,7 @@ import {
  SafeAreaView,  StyleSheet, ImageBackground, TextInput, Dimensions
 } from 'react-native';
 
-import SearchList from './SearchList';
+import SearchList from '../components/container/SearchList';
 
 
 export default function TabOneScreen() {
