@@ -1,36 +1,35 @@
-
-// https://docs.expo.io/guides/authentication/#google
-
-import * as React from 'react';
-import * as WebBrowser from 'expo-web-browser';
-import * as Google from 'expo-auth-session/providers/google';
-import { Button } from 'react-native';
-
-WebBrowser.maybeCompleteAuthSession();
-
+import * as Google from 'expo-google-app-auth';
+import {Button} from 'react-native';
+import React from 'react';
+// export default function Login() {
+// }
+// 된거같긴한데..
 export default function App({navigation}) {
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId: '705980003268-m4sjefkh31ieiu4m6gbc100pbit2c2jq.apps.googleusercontent.com',
-    iosClientId: '705980003268-q5gu3rp1pc8mias8qoecd7lmcpl481mj.apps.googleusercontent.com',
-    androidClientId: '705980003268-m4sjefkh31ieiu4m6gbc100pbit2c2jq.apps.googleusercontent.com',
-    webClientId: '705980003268-8ct5qea5r1vge6ve3qk6sspq10h0bq82.apps.googleusercontent.com',
+  async function login() {
     
-  });
-
-  React.useEffect(() => {
-    if (response?.type === 'success') {
-      const { authentication } = response;
-      navigation.navigate('Root');
-      }
-  }, [response]);
+    const config = {
+      // expoClientId: `705980003268-8ct5qea5r1vge6ve3qk6sspq10h0bq82.apps.googleusercontent.com`,
+      // iosClientId: `<YOUR_IOS_CLIENT_ID>`,
+      androidClientId: `705980003268-ajooolpei4vgbbfqkm61u71n6jl4nsen.apps.googleusercontent.com`,
+      // iosStandaloneAppClientId: `<YOUR_IOS_CLIENT_ID>`,
+      // androidStandaloneAppClientId: `<YOUR_ANDROID_CLIENT_ID>`,
+    };
+    const result  = await Google.logInAsync(config);
+    console.log(result.type)
+    if (result.type === 'success') {
+      /* Log-Out */
+      console.log(result.accessToken);
+      console.log(result.user);
+      // await Google.logOutAsync({ accessToken, ...config });
+      /* `accessToken` is now invalid and cannot be used to get data from the Google API with HTTP requests */
+    }
+  }
 
   return (
     <Button
-      disabled={!request}
       title="Login"
       onPress={() => {
-        
-        promptAsync({ useProxy: true, redirectUri })
+        login()
         }}
     />
   );
