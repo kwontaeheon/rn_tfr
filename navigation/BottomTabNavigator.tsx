@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';

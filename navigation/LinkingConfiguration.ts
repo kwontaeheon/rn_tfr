@@ -6,6 +6,11 @@ export default {
     screens: {
       Root: {
         screens: {
+          LoginScreen: {
+            screens: {
+              LoginScreen: 'login',
+            },
+          },
           TabOne: {
             screens: {
               TabOneScreen: 'one',
