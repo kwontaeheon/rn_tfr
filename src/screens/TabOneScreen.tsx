@@ -11,26 +11,9 @@ export default function TabOneScreen() {
   return (
     
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={require('../assets/images/nyn.jpg')} style={styles.image}>
-        <View style={{ 
-          height: '100%', 
-          backgroundColor: 'transparent', 
-          flex: 1, 
-          width: '100%', 
-          borderRadius: 5,
-          paddingTop: '5%',
-           }}>
-          <TextInput style={{
-            borderColor: '#FFFFFF',
-            borderBottomWidth: 1,
-            marginLeft: 100,
-            marginRight: 100,
-            marginTop: 30,
-            padding: 7,
-            height: 50,
-            fontSize: 15,
-            color:  '#FFFFFF',
-            textAlign: 'center'}} 
+      <ImageBackground source={require('../../assets/images/nyn.jpg')} style={styles.image}>
+        <View style={styles.backgroundFull}>
+          <TextInput style={styles.searchBar} 
              placeholderTextColor='#FFFFFF'
              placeholder="찾아보기.." 
              onChangeText={(text)=>console.log({text})}/>
@@ -52,6 +35,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     height: '100%'
   },
+  backgroundFull: { 
+    height: '100%', 
+    backgroundColor: 'transparent', 
+    flex: 1, 
+    width: '100%', 
+    borderRadius: 5,
+    paddingTop: '5%',
+     },
+  searchBar: {
+    borderColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    marginLeft: 100,
+    marginRight: 100,
+    marginTop: 30,
+    padding: 7,
+    height: 50,
+    fontSize: 15,
+    color:  '#FFFFFF',
+    textAlign: 'center'},
   title: {
     fontSize: 15,
     fontWeight: 'bold',
@@ -63,8 +65,6 @@ const styles = StyleSheet.create({
   },
 
    image: {
-    // width: '100%'
-    // , height: '100%'
     width: d.width
     , height: d.height
     , position: 'absolute'

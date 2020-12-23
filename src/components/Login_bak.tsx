@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { AuthContent, InputWithLabel, AuthButton, RightAlignedLink, AuthError } from 'components/Auth';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as authActions from '../redux/auth';
-import * as userActions from '../redux/user';
+import * as authActions from '../src/redux/auth';
+import * as userActions from '../src/redux/user';
 import storage from '../lib/Storage';
 
 
