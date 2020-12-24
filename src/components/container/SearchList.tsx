@@ -1,18 +1,21 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
 import { SearchData } from '../../redux/searchData';
-import { LoadMoreSearchData } from './LoadMoreSearchData'
+
 import { connect } from 'react-redux';
 
-interface Props { searchData: ReadonlyArray<SearchData>; }
+
+interface Props { searchData: Array<SearchData>; }
 
 function SearchList({ searchData }: Props) {
     return (
-        <FlatList data={searchData} renderItem={_renderItem} onEndReached={LoadMoreSearchData} style={styles.container} />
+        <FlatList data={searchData} renderItem={_renderItem} onScrollEndDrag={_loadMoreSearchData} style={styles.listContainer} />
     );
 }
 
-
+function _loadMoreSearchData() {
+    
+}
 
 function _renderItem({ item }: { item: SearchData }) {
     return (
@@ -27,7 +30,7 @@ function _renderItem({ item }: { item: SearchData }) {
 export default connect(function ({ searchData }: Props) { return { searchData }; })(SearchList);
 
 const styles = StyleSheet.create({
-    container: {
+    listContainer: {
         top: 20,
         flex: 1,
     },

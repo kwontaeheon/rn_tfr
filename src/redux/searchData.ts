@@ -14,7 +14,7 @@ export interface SearchData {
     diary: string;
 }
 
-const initialState: ReadonlyArray<SearchData> = [
+const initialState: Array<SearchData> = [
     { key: '1', name: 'John', id: '2', title: 'First Story', diary: 'story contents' },
     { key: '2', name: 'Tom', id: '5', title: 'First Story', diary: 'story contents'  },
     { key: '3', name: 'John', id: '2' , title: 'First Story', diary: 'story contents' },
@@ -31,7 +31,7 @@ const initialState: ReadonlyArray<SearchData> = [
 type Action = LoadAction | CreateAction | UpdateAction | RemoveAction;
 
 // Reducer
-export default function searchData(state: ReadonlyArray<SearchData> = initialState, action: Action) {
+export default function searchData(state: Array<SearchData> = initialState, action: Action) {
     switch (action.type) {
         case CREATE:
             return [...state, action.payload];
@@ -40,6 +40,12 @@ export default function searchData(state: ReadonlyArray<SearchData> = initialSta
         case REMOVE:
             return state.filter(item => item.key !== action.payload.key);
         case LOAD:
+            console.log("LOAD!!");
+            let element : SearchData = { key: `${state.length + 1}`, name: 'Tom', id: '5',title: `${state.length} Story`, diary: 'story contents' };
+            console.log(element); 
+            console.log(state);
+            console.log(state.filter(item => item.key !== action.payload.key));
+            console.log('after elem')
             return [...state];
         default:
             return state;
@@ -47,10 +53,17 @@ export default function searchData(state: ReadonlyArray<SearchData> = initialSta
 }
 
 // Action Creators
-interface LoadAction { type: typeof LOAD; }
-export function loadSearchData(): LoadAction {
+interface LoadAction { type: typeof LOAD; payload: SearchData;}
+export function loadSearchData(type: typeof LOAD) {
     console.log('load more!')
-    return { type: LOAD };
+    return searchData(  {type: LOAD, payload: {
+        key: "",
+        name: "",
+        id: "",
+        title: "",
+        diary: ""
+    }});
+    // return  { type: LOAD, payload };
 }
 
 interface CreateAction { type: typeof CREATE; payload: SearchData; }

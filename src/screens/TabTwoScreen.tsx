@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 
-import SearchList from './SearchList';
+import SearchList from '../components/container/SearchList';
 
 const d = Dimensions.get("window")
 

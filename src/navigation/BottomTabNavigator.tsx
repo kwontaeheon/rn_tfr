@@ -11,6 +11,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import TabFourScreen from '../screens/TabFourScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList } from '../../types';
+import ListScreen from '../screens/ListScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -117,7 +118,7 @@ function TabThreeNavigator() {
     <TabThreeStack.Navigator>
       <TabThreeStack.Screen
         name="TabThreeScreen"
-        component={TabThreeScreen}
+        component={ListScreen}
         options={{ headerTitle: '함께보기' , headerShown:false}}
       />
     </TabThreeStack.Navigator>
