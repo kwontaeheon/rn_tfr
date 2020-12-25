@@ -117,7 +117,7 @@ function TabThreeNavigator() {
   return (
     <TabThreeStack.Navigator>
       <TabThreeStack.Screen
-        name="TabThreeScreen"
+        name="ListScreen"
         component={ListScreen}
         options={{ headerTitle: '함께보기' , headerShown:false}}
       />

@@ -4,7 +4,7 @@ import { addDiary, removeDiary, modifyDiary, fetchMoreDiary } from '../modules/d
 import { useCallback } from 'react';
 
 export default function useDiaryManager() {
-  const diaryManager  = useSelector((state: RootState) => state.diaryManager.diary);
+  const diary  = useSelector((state: RootState) => state.diaryManager.diary);
   const dispatch = useDispatch();
 
   const onAddDiary = useCallback((uid: string, title: string , contents: string, did: string) => dispatch(addDiary({uid, title, contents, did})), [dispatch]);
@@ -13,7 +13,7 @@ export default function useDiaryManager() {
   const onFetchMoreDiary = useCallback(( ) => dispatch(fetchMoreDiary()),  [dispatch] );
 
   return {
-    diaryManager,
+    diary,
     onAddDiary,
     onRemoveDiary,
     onModifyDiary,

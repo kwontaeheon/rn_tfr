@@ -13,11 +13,13 @@ export default function TabOneScreen() {
     <SafeAreaView style={styles.container}>
       <ImageBackground source={require('../../assets/images/nyn.jpg')} style={styles.image}>
         <View style={styles.backgroundFull}>
-          <TextInput style={styles.searchBar} 
+          
+            <TextInput style={styles.searchBar} 
              placeholderTextColor='#FFFFFF'
              placeholder="찾아보기.." 
              onChangeText={(text)=>console.log({text})}/>
-          <SearchList />
+          
+            <SearchList />
       </View>
       </ImageBackground>
     </SafeAreaView>
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     marginRight: 100,
     marginTop: 30,
     padding: 7,
-    height: 50,
+    height: '10%',  // 50
     fontSize: 15,
     color:  '#FFFFFF',
     textAlign: 'center'},
