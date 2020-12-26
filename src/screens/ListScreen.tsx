@@ -8,7 +8,6 @@ import {
 
 import { Button} from 'react-native';
 
-import SearchList from '../components/container/SearchList';
 import useDiary from '../hooks/useDiary';
 import { diaryData } from '../modules/diaryManager';
 

@@ -90,7 +90,7 @@ function TabOneNavigator() {
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="TabOneScreen"
-        component={TabOneScreen}
+        component={ListScreen}
         options={{ headerTitle: '찾아보기' , headerShown:false}}
       />
     </TabOneStack.Navigator>

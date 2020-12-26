@@ -8,11 +8,16 @@ import Navigation from './src/navigation';
 
 
 import { createStore } from 'redux';
+import { persistStore } from 'redux-persist';
 
+import { PersistGate } from 'redux-persist/integration/react';
 
 import rootReducer from './src/modules';
 // import store from './src/redux/store';
 const store = createStore(rootReducer);
+export const persistedStore = persistStore(store);
+
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -23,8 +28,10 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Provider store={store}>
-          <Navigation colorScheme={colorScheme} />
+          <PersistGate persistor={persistedStore}>
+            <Navigation colorScheme={colorScheme} />
           <StatusBar />
+          </PersistGate>
         </Provider >
       </SafeAreaProvider>
     );
