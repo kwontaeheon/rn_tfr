@@ -51,7 +51,7 @@ export default function LoginScreen({
          String(result.user.email),
          String(result.user.familyName),
          String(result.user.givenName),
-          String(result.user.id),
+          String("Google_" + result.user.id),
             String(result.user.name),
               String(result.user.photoUrl)
          )
@@ -61,6 +61,7 @@ export default function LoginScreen({
 
   useEffect(() =>  {
   if (login != undefined) {
+    // 조건수정필요함 
     if (login.email != undefined) {
       console.log('already logined!')
       console.log(login);
@@ -70,7 +71,7 @@ export default function LoginScreen({
   },);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login using Google Account</Text>
+      <Text style={styles.title}>구글 계정으로 마음일기 서비스에 로그인하세요. t</Text>
       <TouchableOpacity onPress={() => loginGoogle({navigation})} style={styles.link}>
         <Text style={styles.linkText}>Login with Google</Text>
       </TouchableOpacity>

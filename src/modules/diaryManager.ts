@@ -8,7 +8,8 @@ export const fetchMoreDiary = createAction('diary/FETCH')();
 
 
 export interface diaryData {
-  uid: string;
+  email: string;
+  name: string;
   title: string;
   contents: string;
   id: string;
@@ -20,15 +21,9 @@ type DiaryState = {
 
 const initialState: DiaryState = {
   diary: [
-    {uid: "1id", title: "1tit", contents: "1cont", id: "1did"},
-    {uid: "1id", title: "1tit", contents: "1cont", id: "2did"},
-    {uid: "1id", title: "1tit", contents: "1cont", id: "3did"},
-    // {uid: "1id", title: "1tit", contents: "1cont", id: "4did"},
-    // {uid: "1id", title: "1tit", contents: "1cont", id: "5did"},
-    // {uid: "1id", title: "1tit", contents: "1cont", id: "6did"},
-    // {uid: "1id", title: "1tit", contents: "1cont", id: "7did"},
-    // {uid: "1id", title: "1tit", contents: "1cont", id: "8did"},
-    // {uid: "1id", title: "1tit", contents: "1cont", id: "9did"},
+    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "1did"},
+    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "2did"},
+    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "3did"},
   ]
 };
 
@@ -45,7 +40,7 @@ const diaryManager  = createReducer(initialState)
   .handleAction(modifyDiary, (state, action) => (
     { diaty: state.diary  }))
   .handleAction(fetchMoreDiary, state => (
-    { diary: state.diary.concat({uid: "1i2d", title: "2tit", contents: "2cont", id: "10did"}) }
+    { diary: state.diary.concat({email: "1i2d", name: "tk", title: "2tit", contents: "2cont", id: "10did"}) }
     ));
 
 export default diaryManager;

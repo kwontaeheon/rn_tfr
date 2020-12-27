@@ -7,9 +7,9 @@ export default function useDiaryManager() {
   const diary  = useSelector((state: RootState) => state.diaryManager.diary);
   const dispatch = useDispatch();
 
-  const onAddDiary = useCallback((uid: string, title: string , contents: string, did: string) => dispatch(addDiary({uid, title, contents, did})), [dispatch]);
-  const onRemoveDiary = useCallback((uid: string, title: string , contents: string, did: string) => dispatch(removeDiary({uid, title, contents, did})), [dispatch]);
-  const onModifyDiary = useCallback((uid: string, title: string , contents: string, did: string) => dispatch(modifyDiary({uid, title, contents, did})), [dispatch]);
+  const onAddDiary = useCallback((email: string, name: string, title: string , contents: string, id: string) => dispatch(addDiary({email, name, title, contents, id})), [dispatch]);
+  const onRemoveDiary = useCallback((email: string, name: string,  title: string , contents: string, id: string) => dispatch(removeDiary({email, name, title, contents, id})), [dispatch]);
+  const onModifyDiary = useCallback((email: string, name: string, title: string , contents: string, id: string) => dispatch(modifyDiary({email, name, title, contents, id})), [dispatch]);
   const onFetchMoreDiary = useCallback(( ) => dispatch(fetchMoreDiary()),  [dispatch] );
 
   return {
