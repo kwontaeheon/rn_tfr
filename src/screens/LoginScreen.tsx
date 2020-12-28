@@ -3,6 +3,7 @@ import {Button} from 'react-native';
 
 import useLogin from '../hooks/useLogin';
 import React, { useEffect } from 'react';
+import useDiary from '../hooks/useDiary';
 // https://docs.expo.io/versions/v38.0.0/sdk/google/ 
 // https://m.blog.naver.com/PostView.nhn?blogId=chandong83&logNo=221890147009&categoryNo=22&proxyReferer=https:%2F%2Fwww.google.com%2F
 
@@ -21,6 +22,8 @@ export default function LoginScreen({
 }:
  StackScreenProps<RootStackParamList, 'LoginScreen'>) {
   const { login, onLoginSuccess } = useLogin();
+  const { diary, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
+
   async function loginGoogle({navigation}) {
     
 
@@ -60,18 +63,19 @@ export default function LoginScreen({
   }
 
   useEffect(() =>  {
-  if (login != undefined) {
-    // 조건수정필요함 
-    if (login.email != undefined) {
-      console.log('already logined!')
-      console.log(login);
-      navigation.replace('Root');
+    if (login != undefined) {
+      // 조건수정필요함 
+      if (login.email != undefined 
+        && login.email != "") {
+        console.log('already logined!')
+        console.log(login);
+        navigation.replace('Root');
+      }
     }
-  }
   },);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>구글 계정으로 마음일기 서비스에 로그인하세요. t</Text>
+      <Text style={styles.title}> 마음일기에 구글로 로그인하세요.</Text>
       <TouchableOpacity onPress={() => loginGoogle({navigation})} style={styles.link}>
         <Text style={styles.linkText}>Login with Google</Text>
       </TouchableOpacity>

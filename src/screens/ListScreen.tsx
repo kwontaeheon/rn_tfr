@@ -10,6 +10,8 @@ import { Button} from 'react-native';
 
 import useDiary from '../hooks/useDiary';
 import { diaryData } from '../modules/diaryManager';
+import useLoginManager from '../hooks/useLogin';
+import {loginData} from '../modules/loginManager';
 
 function _renderItem({ item }: { item: diaryData }) {
   return (
@@ -24,7 +26,13 @@ function _renderItem({ item }: { item: diaryData }) {
 
 
 function ListScreen() {
-  const { diary, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
+  const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
+  const { login , onLoginSuccess } = useLoginManager();
+
+  
+  React.useEffect(() => {
+    onFetchMoreDiary(login.email, rIdx)
+  }, [onFetchMoreDiary])
 
   return (
     
@@ -36,13 +44,11 @@ function ListScreen() {
            placeholderTextColor='#FFFFFF'
            placeholder="찾아보기.." 
            onChangeText={(text)=>console.log({text})}/>
-        
-        {/* <View style={{backgroundColor: 'transparent', height: '90%'}}> */}
+        <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text>
         <FlatList data={diary} 
             renderItem={_renderItem} 
-            onScrollEndDrag={onFetchMoreDiary} 
+            onScrollEndDrag={() => onFetchMoreDiary(login.email, rIdx)} 
             style={styles.listContainer} />
-        {/* </View> */}
       </View>
     </ImageBackground> 
   </SafeAreaView>
