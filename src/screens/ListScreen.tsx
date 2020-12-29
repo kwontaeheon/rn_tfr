@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { View, Text } from '../components/Themed';
 import {
@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 
-import { Button} from 'react-native';
+import { Button,} from 'react-native';
 
 import useDiary from '../hooks/useDiary';
 import { diaryData } from '../modules/diaryManager';
@@ -29,8 +29,9 @@ function ListScreen() {
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
   const { login , onLoginSuccess } = useLoginManager();
 
-  
+  useEffect(() => {
   onFetchMoreDiary(login.email, rIdx);
+  })
 
   return (
     
@@ -46,7 +47,7 @@ function ListScreen() {
         <FlatList data={diary} 
             renderItem={_renderItem} 
             
-            onScrollEndDrag={() => onFetchMoreDiary(login.email, rIdx)} 
+            onEndReached={() => onFetchMoreDiary(login.email, rIdx)} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 
