@@ -9,50 +9,49 @@ import axios from 'axios';
 function getContentsAfter(email: string, rIdx: number) {
   
     console.log("ridx:" + rIdx + "email: " + email);
-    const paramJson = {
+    const data = {
+      "from" : rIdx, 
+      "size" : 1,
+      "query": {
+        "bool": {
+          "must": [],
+          "filter": [
+            {
+              "bool": {
+                "should": [
+                  {
+                    "match": {
+                      "email": email
+                    }
+                  }
+                ],
+                "minimum_should_match": 1
+              }
+            }
+          ]
+        }
+      },
+      "highlight": {
+        "pre_tags": [
+          "<b>"
+        ],
+        "post_tags": [
+          "</b>"
+        ],
+        "fields": {
+          "*": {}
+        }
+      }
+    }
+
+    const config  = {
       headers: {
         'Content-Type': 'application/json' ,
         'Authorization': 'Basic dmlld2VyOnJuanN4b2dqc0Ax'
-      },
-      data: 
-        qs.stringify({
-          "from" : rIdx, 
-          "size" : 1,
-          "query": {
-            "bool": {
-              "must": [],
-              "filter": [
-                {
-                  "bool": {
-                    "should": [
-                      {
-                        "match": {
-                          "email": email
-                        }
-                      }
-                    ],
-                    "minimum_should_match": 1
-                  }
-                }
-              ]
-            }
-          },
-          "highlight": {
-            "pre_tags": [
-              "<b>"
-            ],
-            "post_tags": [
-              "</b>"
-            ],
-            "fields": {
-              "*": {}
-            }
-          }
-        })
-      
+      }
     }
     // console.log(paramJson);
-    return axios.post('http://maum.cf:9222/maumilgi-diary-contents/_search', paramJson);
+    return axios.post('http://maum.cf:9222/maumilgi-diary-contents/_search', data, config);
     
   ; 
 };
