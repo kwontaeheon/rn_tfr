@@ -29,15 +29,15 @@ function ListScreen() {
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
   const { login , onLoginSuccess } = useLoginManager();
 
-  useEffect(() => {
-  onFetchMoreDiary(login.email, rIdx);
-  })
-
+//    useEffect(() => {
+  // onFetchMoreDiary(login.email, rIdx);
+  // })
+  
   return (
     
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, rIdx)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
-      <View style={styles.backgroundFull}>
+      <View  style={styles.backgroundFull}>
         
         <TextInput style={styles.searchBar} 
            placeholderTextColor='#333333'
@@ -45,8 +45,9 @@ function ListScreen() {
            onChangeText={(text)=>console.log({text})}/>
         <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text>
         <FlatList data={diary} 
+            initialNumToRender={20}
             renderItem={_renderItem} 
-            
+            onEndReachedThreshold={0.1}
             onEndReached={() => onFetchMoreDiary(login.email, rIdx)} 
             style={styles.listContainer} />
       </View>
