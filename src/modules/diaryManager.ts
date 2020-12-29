@@ -24,16 +24,16 @@ type DiaryState = {
 
 const initialState: DiaryState = {
   diary: [
-    {email: "1id", name: "tk", title: "1ti2222t", contents: "1cont", id: "1did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "2did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "3did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "4did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "5did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "6did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "7did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "8did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "9did"},
-    {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "10did"},
+    // {email: "1id", name: "tk", title: "1ti2222t", contents: "1cont", id: "1did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "2did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "3did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "4did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "5did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "6did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "7did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "8did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "9did"},
+    // {email: "1id", name: "tk", title: "1tit", contents: "1cont", id: "10did"},
   ],
   lIdx: 0,
   rIdx: 0

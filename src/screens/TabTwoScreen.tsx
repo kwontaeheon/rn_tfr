@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 
-import SearchList from '../components/container/SearchList';
+
 
 const d = Dimensions.get("window")
 
@@ -18,7 +18,7 @@ export default function TabTwoScreen() {
       
       <View style={{
         height: '90%', 
-        backgroundColor: '#333', 
+        backgroundColor: '#FFFFFF', 
         flex: 1, 
         width: '100%', 
         borderRadius: 0,
@@ -44,7 +44,7 @@ export default function TabTwoScreen() {
                 >
                */}
               <TextInput style={{
-              borderColor: '#FFF',
+              borderColor: '#333333',
               borderBottomWidth: 1,
               marginLeft: 30,
               marginRight: 30,
@@ -54,15 +54,15 @@ export default function TabTwoScreen() {
               fontSize: 15,
               textAlign: 'left',
               width: '80%',
-              color: '#FFFFFF'
+              color: '#333333'
             }}
-              placeholderTextColor="#FFFFFF"
+              placeholderTextColor="#333333"
               placeholder="제목.." 
               onChangeText={(text)=>console.log({text})}/>
             
 
               <TextInput style={{
-                borderColor: '#FFFFFF',
+                borderColor: '#333333',
                 // borderWidth: 1,
                 // marginLeft: 30,
                 // marginRight: 30,
@@ -74,12 +74,12 @@ export default function TabTwoScreen() {
                 fontSize: 15,
                 textAlign: 'left',
                 textAlignVertical: 'top',
-                color: '#FFFFFF'
+                color: '#333333'
                 
               }}
                 multiline 
                 scrollEnabled
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#333333"
                 placeholder="내용..." 
                 onChangeText={(text)=>console.log({text})}/>
 
@@ -89,7 +89,7 @@ export default function TabTwoScreen() {
     </View>
     <View style={{
       height: 40,
-      backgroundColor: '#333', 
+      backgroundColor: '#FFFFFF', 
       width: '100%', 
       
     }}>
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderTopColor: '#FFF',
     borderTopWidth: 1,
-    backgroundColor: "#333",
+    backgroundColor: "#FFFFFF",
     display:'flex',
     width: '80%',
     height: 50,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   buttonTitle: {
     fontSize: 15,
-    color: '#FFF',
+    color: '#333333',
     height: 30,
     position: 'relative'
   }

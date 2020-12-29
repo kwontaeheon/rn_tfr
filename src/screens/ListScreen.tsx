@@ -30,23 +30,22 @@ function ListScreen() {
   const { login , onLoginSuccess } = useLoginManager();
 
   
-  React.useEffect(() => {
-    onFetchMoreDiary(login.email, rIdx)
-  }, [onFetchMoreDiary])
+  onFetchMoreDiary(login.email, rIdx);
 
   return (
     
     <SafeAreaView style={styles.container}>
-    <ImageBackground source={require('../../assets/images/nyn.jpg')} style={styles.image}>
+    <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View style={styles.backgroundFull}>
         
         <TextInput style={styles.searchBar} 
-           placeholderTextColor='#FFFFFF'
+           placeholderTextColor='#333333'
            placeholder="찾아보기.." 
            onChangeText={(text)=>console.log({text})}/>
         <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text>
         <FlatList data={diary} 
             renderItem={_renderItem} 
+            
             onScrollEndDrag={() => onFetchMoreDiary(login.email, rIdx)} 
             style={styles.listContainer} />
       </View>
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
      },
      
   searchBar: {
-    borderColor: '#FFFFFF',
+    borderColor: '#333333',
     borderBottomWidth: 1,
     marginLeft: 100,
     marginRight: 100,
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     padding: 10,
     
     fontSize: 15,
-    color:  '#FFFFFF',
+    color:  '#333333',
     textAlign: 'center',
     textAlignVertical: 'bottom',
     height: 50,
@@ -122,18 +121,18 @@ const styles = StyleSheet.create({
       height: 150,
       borderBottomWidth: 1,
       // borderTopWidth: 1,
-      borderColor: '#FFFFFF',
+      borderColor: '#333333',
       padding: 10
   },
   title: {
       fontSize: 15,
       
-      color: '#FFFFFF',
+      color: '#333333',
       // fontWeight: 'bold'
   },
   subtitle: {
       left: 10,
-      color: '#FFFFFF',
+      color: '#333333',
       fontSize: 15
   }
 });

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { RootState } from '../modules';
 import { addDiary, removeDiary, modifyDiary, fetchMoreDiary, diaryData } from '../modules/diaryManager';
 import { useCallback } from 'react';
-import qs from 'qs';
+
 
 import axios from 'axios';
 function getContentsAfter(email: string, rIdx: number) {
@@ -11,7 +11,7 @@ function getContentsAfter(email: string, rIdx: number) {
     console.log("ridx:" + rIdx + "email: " + email);
     const data = {
       "from" : rIdx, 
-      "size" : 1,
+      "size" : 50,
       "query": {
         "bool": {
           "must": [],
@@ -68,11 +68,11 @@ export default function useDiaryManager() {
   
   const onFetchMoreDiary = useCallback((email: string, rIdx: number)  => {
       getContentsAfter(email, rIdx).then(result => {
-        console.log(result.config);
-      console.log(result.status);
-      console.log(result.request);
-      console.log(result.data);
-      console.log(new Date());
+        // console.log(result.config);
+        // console.log(result.status);
+        // console.log(result.request);
+        // console.log(result.data);
+        // console.log(new Date());
       const resultArr = result.data.hits.hits 
       
       let resTypedArr = Array<diaryData>();
