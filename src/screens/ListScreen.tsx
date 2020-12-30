@@ -43,7 +43,7 @@ function ListScreen() {
            placeholderTextColor='#333333'
            placeholder="찾아보기.." 
            onChangeText={(text)=>console.log({text})}/>
-        <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text>
+        {/* <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text> */}
         <FlatList data={diary} 
             initialNumToRender={20}
             renderItem={_renderItem} 

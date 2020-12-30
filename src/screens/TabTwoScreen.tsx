@@ -5,14 +5,22 @@ import { View, Text } from '../components/Themed';
 import {
  SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform
 } from 'react-native';
+import useLoginManager from '../hooks/useLogin';
 
-
+import axios from 'axios';
+import Navigation from '../navigation';
 
 
 const d = Dimensions.get("window")
 
 
-export default function TabTwoScreen() {
+
+export default function TabTwoScreen({navigation}) {
+  const { login , onLoginSuccess } = useLoginManager();
+  
+  let title: string = "";
+   let contents: string = "";
+
   return (
     <SafeAreaView style={styles.container}>
       
@@ -48,17 +56,20 @@ export default function TabTwoScreen() {
               borderBottomWidth: 1,
               marginLeft: 30,
               marginRight: 30,
-              marginTop: 30,
+              marginTop: 40,
               paddingBottom: 5,
               height: 40,
               fontSize: 15,
-              textAlign: 'left',
+              textAlign: 'center',
               width: '80%',
               color: '#333333'
             }}
               placeholderTextColor="#333333"
               placeholder="제목.." 
-              onChangeText={(text)=>console.log({text})}/>
+              onChangeText={(text)=>{  title = text ; 
+              console.log({title})}}
+              />
+              
             
 
               <TextInput style={{
@@ -81,7 +92,7 @@ export default function TabTwoScreen() {
                 scrollEnabled
                 placeholderTextColor="#333333"
                 placeholder="내용..." 
-                onChangeText={(text)=>console.log({text})}/>
+                onChangeText={(text)=> { contents = text ; console.log({text}) }}/>
 
             
             
@@ -94,10 +105,40 @@ export default function TabTwoScreen() {
       
     }}>
             <TouchableOpacity style={styles.button} 
-                onPress= {(text) => console.log({text})}
+                onPress= {(text) => {
+                  // title, contents, login.email;
+    const data = {
+      "@timestamp": new Date().toISOString(),
+      "email": login.email,
+      "name": login.name,
+      "title": title,
+      "contents": contents
+    }
+
+    const config  = {
+      headers: {
+        'Content-Type': 'application/json' ,
+        'Authorization': 'Basic dmlld2VyOnJuanN4b2dqc0Ax'
+      }
+    }
+    // console.log(paramJson);
+    console.log(data);
+    console.log(config);
+
+    axios.post('http://maum.cf:9222/maumilgi-diary-contents/_doc', data, config)
+    .then(rs => { 
+      //  console.log(rs.data)
+      //  console.log(rs.request)
+      title = "";
+      contents = "";
+      
+      navigation.replace('Root');
+     } )
+     .catch((error) => console.log( error.response.request._response ) );
+
+                }}
                 >
-                <Text style={styles.buttonTitle}
-                  
+                <Text style={styles.buttonTitle} 
                 >작성완료</Text>
              </TouchableOpacity>
               {/* <View style={{height:50}}/> */}

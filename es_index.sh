@@ -144,3 +144,8 @@ GET maumilgi-diary-contents/_search
 
 
 GET maumilgi-diary-contents/_termvectors/pQ5xrXYBa0Zs_6PFPrnd?fields=contents
+
+POST maumilgi-diary-contents/_doc
+{
+  "@timestamp": "2020-12-28T13:27:26.625Z","email": "kwontaeheon@gmail.com", "name": "Taeheon Kwon", "title": "나의 두번째 이야기",  "contents": "나의 두번째 글쓰기 입니다."
+}
