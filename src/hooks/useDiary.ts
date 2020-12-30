@@ -17,18 +17,13 @@ function getContentsAfter(email: string, rIdx: number) {
           "must": [],
           "filter": [
             {
-              "bool": {
-                "should": [
-                  {
-                    "match": {
-                      "email": email
-                    }
-                  }
-                ],
-                "minimum_should_match": 1
+              "query_string": {
+                "query": "*"
               }
             }
-          ]
+          ],
+          "should": [],
+          "must_not": []
         }
       },
       "highlight": {
@@ -90,6 +85,32 @@ export default function useDiaryManager() {
       })
     
   },  [dispatch] );
+
+  const onFetchMoreDiaryPublic = useCallback((email: string, rIdx: number)  => {
+    getContentsAfter("", rIdx).then(result => {
+      // console.log(result.config);
+      // console.log(result.status);
+      // console.log(result.request);
+      // console.log(result.data);
+      // console.log(new Date());
+    const resultArr = result.data.hits.hits 
+    
+    let resTypedArr = Array<diaryData>();
+    //for문을 돌면서 contact[i]의 key 값을 가져와 value값 출력해준다.
+        for (var i = 0; i < resultArr.length; i++) {
+          resTypedArr = resTypedArr.concat(
+            { email: resultArr[i]._source.email,
+              name:  resultArr[i]._source.name,
+              title: resultArr[i]._source.title,
+              contents: resultArr[i]._source.contents,
+              id: resultArr[i]._source.email + resultArr[i]._id
+            });
+        }
+      dispatch(fetchMoreDiary(resTypedArr))
+    })
+  
+},  [dispatch] );
+  
     
     
 
@@ -100,6 +121,7 @@ export default function useDiaryManager() {
     onAddDiary,
     onRemoveDiary,
     onModifyDiary,
-    onFetchMoreDiary
+    onFetchMoreDiary,
+    onFetchMoreDiaryPublic
   };
 }
