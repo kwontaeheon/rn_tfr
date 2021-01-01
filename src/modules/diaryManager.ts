@@ -9,6 +9,7 @@ export const fetchDiary = createAction('diary/FETCH')<Array<diaryData>>();
 
 
 export interface diaryData {
+  timestamp: Date;
   email: string;
   name: string;
   title: string;

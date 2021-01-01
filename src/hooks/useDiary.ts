@@ -166,9 +166,9 @@ export default function useDiaryManager() {
   const rIdx = useSelector((state: RootState) => state.diaryManager.rIdx);
   const dispatch = useDispatch();
 
-  const onAddDiary = useCallback((email: string, name: string, title: string , contents: string, id: string) => dispatch(addDiary({email, name, title, contents, id})), [dispatch]);
-  const onRemoveDiary = useCallback((email: string, name: string,  title: string , contents: string, id: string) => dispatch(removeDiary({email, name, title, contents, id})), [dispatch]);
-  const onModifyDiary = useCallback((email: string, name: string, title: string , contents: string, id: string) => dispatch(modifyDiary({email, name, title, contents, id})), [dispatch]);
+  const onAddDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string) => dispatch(addDiary({timestamp, email, name, title, contents, id})), [dispatch]);
+  const onRemoveDiary = useCallback((timestamp: Date, email: string, name: string,  title: string , contents: string, id: string) => dispatch(removeDiary({timestamp, email, name, title, contents, id})), [dispatch]);
+  const onModifyDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string) => dispatch(modifyDiary({timestamp, email, name, title, contents, id})), [dispatch]);
   
   const onFetchMoreDiary = useCallback((email: string, rIdx: number, queryString: string, initialTF: boolean)  => {
     
@@ -180,12 +180,13 @@ export default function useDiaryManager() {
         // console.log(result.data);
         // console.log(new Date());
       const resultArr = result.data.hits.hits 
-      
+      console.log(resultArr);
       let resTypedArr = Array<diaryData>();
       //for문을 돌면서 contact[i]의 key 값을 가져와 value값 출력해준다.
       for (var i = 0; i < resultArr.length; i++) {
         resTypedArr = resTypedArr.concat(
-          { email: resultArr[i]._source.email,
+          { timestamp: resultArr[i]._source['@timestamp'],
+            email: resultArr[i]._source.email,
             name:  resultArr[i]._source.name,
             title: resultArr[i]._source.title,
             contents: resultArr[i]._source.contents,
