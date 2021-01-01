@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import { RootState } from '../modules';
-import { addDiary, removeDiary, modifyDiary, fetchMoreDiary, fetchDiary,  diaryData } from '../modules/diaryManager';
+import { addDiary, removeDiary, modifyDiary, fetchMoreDiary, fetchDiary,  diaryData } from '../modules/publicDiaryManager';
 import { useCallback } from 'react';
 
 
@@ -160,10 +160,10 @@ function getContentsAfter(email: string, rIdx: number, queryString: string, init
 
 
 
-export default function useDiaryManager() {
-  const diary  = useSelector((state: RootState) => state.diaryManager.diary);
-  const lIdx = useSelector((state: RootState) => state.diaryManager.lIdx);
-  const rIdx = useSelector((state: RootState) => state.diaryManager.rIdx);
+export default function usePublicDiaryManager() {
+  const diary  = useSelector((state: RootState) => state.publicDiaryManager.diary);
+  const lIdx = useSelector((state: RootState) => state.publicDiaryManager.lIdx);
+  const rIdx = useSelector((state: RootState) => state.publicDiaryManager.rIdx);
   const dispatch = useDispatch();
 
   const onAddDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string) => dispatch(addDiary({timestamp, email, name, title, contents, id})), [dispatch]);

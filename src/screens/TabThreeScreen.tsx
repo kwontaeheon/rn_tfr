@@ -8,9 +8,9 @@ import {
 
 import { Button,} from 'react-native';
 
-import useDiaryManager from '../hooks/useDiary';
+import usePublicDiaryManager from '../hooks/usePublicDiary';
 import useCurrentDiaryManager from '../hooks/useCurrentDiary';
-import { diaryData } from '../modules/diaryManager';
+import { diaryData } from '../modules/publicDiaryManager';
 import useLoginManager from '../hooks/useLogin';
 import { format } from "date-fns";  // https://date-fns.org/v2.16.1/docs/format
 
@@ -27,9 +27,9 @@ function _renderItem({ item }: { item: diaryData }) {
 
 
 
-function ListScreen() {
+function TabThreeScreen() {
   let queryString: string = "";
-  const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiaryManager();
+  const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = usePublicDiaryManager();
   const { login , onLoginSuccess } = useLoginManager();
   const { currentDiary,  onModifyCurrentDiary} = useCurrentDiaryManager();
 
@@ -39,7 +39,7 @@ function ListScreen() {
   
   return (
     
-    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, rIdx , "", true)} style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary("", rIdx , "", true)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View  style={styles.backgroundFull}>
         
@@ -49,8 +49,9 @@ function ListScreen() {
            onChangeText={(text)=> {
               onModifyCurrentDiary(currentDiary.title, 
                 currentDiary.contents , 
+                currentDiary.query ,
                 text).then(rs =>  {
-                onFetchMoreDiary(login.email, rIdx, rs.payload.query, true)
+                onFetchMoreDiary("", rIdx, rs.payload.queryPublic, true)
                 console.log("query: " + rs.payload.query + "text: " + text);
                 });
               }}/>
@@ -59,7 +60,7 @@ function ListScreen() {
             initialNumToRender={50}
             renderItem={_renderItem} 
             onEndReachedThreshold={0.4}
-            onEndReached={() => onFetchMoreDiary(login.email, rIdx, currentDiary.query, false)} 
+            onEndReached={() => onFetchMoreDiary("", rIdx, currentDiary.queryPublic, false)} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 
@@ -68,7 +69,7 @@ function ListScreen() {
   );
 }
 
-export default ListScreen;
+export default TabThreeScreen;
 
 const d = Dimensions.get("window")
 

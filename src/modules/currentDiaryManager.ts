@@ -9,6 +9,7 @@ export interface currentDiaryData {
   title: string;
   contents: string;
   query: string;
+  queryPublic: string;
 }
 
 type CurrentDiaryState = {
@@ -20,7 +21,8 @@ const initialState: CurrentDiaryState = {
   {
     title: "",
     contents: "",
-    query: ""
+    query: "",
+    queryPublic: ""
   }
 };
 

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import diaryManager from './diaryManager';
 import currentDiaryManager from './currentDiaryManager';
 import loginManager from './loginManager';
+import publicDiaryManager from './publicDiaryManager';
 
 import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
@@ -25,7 +26,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   currentDiaryManager,
   diaryManager,
-  loginManager
+  loginManager,
+  publicDiaryManager
 });
 
 // export default rootReducer;

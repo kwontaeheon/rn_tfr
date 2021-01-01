@@ -40,7 +40,7 @@ function ListScreen() {
   
   return (
     
-    <SafeAreaView onLayout={() => onFetchMoreDiary("", rIdx, currentDiary.query, true)} style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, rIdx, currentDiary.query, true)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View  style={styles.backgroundFull}>
         
@@ -50,8 +50,9 @@ function ListScreen() {
            onChangeText={(text)=>{ 
             onModifyCurrentDiary(currentDiary.title, 
               currentDiary.contents , 
-              text).then(rs =>  {
-              onFetchMoreDiary("", rIdx, rs.payload.query, true)
+              text, 
+              currentDiary.queryPublic).then(rs =>  {
+              onFetchMoreDiary(login.email, rIdx, rs.payload.query, true)
               console.log("query: " + rs.payload.query + "text: " + text);
               });
             }}/>
@@ -59,8 +60,8 @@ function ListScreen() {
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
-            onEndReachedThreshold={0.4}
-            onEndReached={() => onFetchMoreDiary("", rIdx, currentDiary.query, false)} 
+            onEndReachedThreshold={0.9}
+            onEndReached={() => onFetchMoreDiary(login.email, rIdx, currentDiary.query, false)} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 
