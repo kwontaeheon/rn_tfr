@@ -12,12 +12,13 @@ import useDiaryManager from '../hooks/useDiary';
 import useCurrentDiaryManager from '../hooks/useCurrentDiary';
 import { diaryData } from '../modules/diaryManager';
 import useLoginManager from '../hooks/useLogin';
-
+import { format } from "date-fns";  // https://date-fns.org/v2.16.1/docs/format
 
 function _renderItem({ item }: { item: diaryData }) {
   return (
       <TouchableOpacity style={styles.item}>
           <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.subtitle}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm")}</Text>
           <Text style={styles.subtitle}>{item.contents}</Text>
           {/* <Text style={styles.subtitle}>{item.class}</Text> */}
       </TouchableOpacity>
