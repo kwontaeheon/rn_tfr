@@ -8,10 +8,11 @@ import {
 
 import { Button,} from 'react-native';
 
-import useDiary from '../hooks/useDiary';
+import useDiaryManager from '../hooks/useDiary';
+import useCurrentDiaryManager from '../hooks/useCurrentDiary';
 import { diaryData } from '../modules/diaryManager';
 import useLoginManager from '../hooks/useLogin';
-import {loginData} from '../modules/loginManager';
+
 
 function _renderItem({ item }: { item: diaryData }) {
   return (
@@ -26,8 +27,10 @@ function _renderItem({ item }: { item: diaryData }) {
 
 
 function ListScreen() {
-  const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
+  let queryString: string = "";
+  const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiaryManager();
   const { login , onLoginSuccess } = useLoginManager();
+  const { currentDiary,  onModifyCurrentDiary} = useCurrentDiaryManager();
 
 //    useEffect(() => {
   // onFetchMoreDiary(login.email, rIdx);
@@ -35,20 +38,27 @@ function ListScreen() {
   
   return (
     
-    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, rIdx)} style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, rIdx , "", true)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View  style={styles.backgroundFull}>
         
         <TextInput style={styles.searchBar} 
            placeholderTextColor='#333333'
            placeholder="찾아보기.." 
-           onChangeText={(text)=>console.log({text})}/>
+           onChangeText={(text)=> {
+              onModifyCurrentDiary(currentDiary.title, 
+                currentDiary.contents , 
+                text).then(rs =>  {
+                onFetchMoreDiary(login.email, rIdx, rs.payload.query, true)
+                console.log("query: " + rs.payload.query + "text: " + text);
+                });
+              }}/>
         {/* <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text> */}
         <FlatList data={diary} 
-            initialNumToRender={20}
+            initialNumToRender={50}
             renderItem={_renderItem} 
-            onEndReachedThreshold={0.1}
-            onEndReached={() => onFetchMoreDiary(login.email, rIdx)} 
+            onEndReachedThreshold={0.4}
+            onEndReached={() => onFetchMoreDiary(login.email, rIdx, currentDiary.query, false)} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 

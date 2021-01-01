@@ -6,6 +6,8 @@ import {
  SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform
 } from 'react-native';
 import useLoginManager from '../hooks/useLogin';
+import useCurrentDiaryManager from '../hooks/useCurrentDiary';
+
 
 import axios from 'axios';
 import Navigation from '../navigation';
@@ -14,12 +16,10 @@ import Navigation from '../navigation';
 const d = Dimensions.get("window")
 
 
-
 export default function TabTwoScreen({navigation}) {
   const { login , onLoginSuccess } = useLoginManager();
+  const { currentDiary,  onModifyCurrentDiary} = useCurrentDiaryManager();
   
-  let title: string = "";
-   let contents: string = "";
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,8 +66,15 @@ export default function TabTwoScreen({navigation}) {
             }}
               placeholderTextColor="#333333"
               placeholder="제목.." 
-              onChangeText={(text)=>{  title = text ; 
-              console.log({title})}}
+              
+              onChangeText={(text) => { 
+                onModifyCurrentDiary(
+                  text, 
+                  currentDiary.contents, 
+                  currentDiary.query).then(rs => {
+                    console.log(rs.payload.title)
+                  })
+              }}
               />
               
             
@@ -92,7 +99,12 @@ export default function TabTwoScreen({navigation}) {
                 scrollEnabled
                 placeholderTextColor="#333333"
                 placeholder="내용..." 
-                onChangeText={(text)=> { contents = text ; console.log({text}) }}/>
+                onChangeText={(text)=> { 
+                  onModifyCurrentDiary(
+                    currentDiary.title, 
+                    text, 
+                    currentDiary.query).then(rs => {
+                  console.log(rs.payload.contents)}) }}/>
 
             
             
@@ -111,8 +123,8 @@ export default function TabTwoScreen({navigation}) {
       "@timestamp": new Date().toISOString(),
       "email": login.email,
       "name": login.name,
-      "title": title,
-      "contents": contents
+      "title": currentDiary.title,
+      "contents": currentDiary.contents
     }
 
     const config  = {
@@ -129,10 +141,12 @@ export default function TabTwoScreen({navigation}) {
     .then(rs => { 
       //  console.log(rs.data)
       //  console.log(rs.request)
-      title = "";
-      contents = "";
-      
-      navigation.replace('Root');
+      onModifyCurrentDiary(
+        "",
+        "",
+        currentDiary.query
+      ).then(rs => 
+        navigation.replace('Root'));
      } )
      .catch((error) => console.log( error.response.request._response ) );
 

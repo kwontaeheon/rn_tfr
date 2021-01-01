@@ -30,7 +30,7 @@ export default function App() {
         <Provider store={store}>
           <PersistGate persistor={persistedStore}>
             <Navigation colorScheme={colorScheme} />
-          <StatusBar />
+          {/* <StatusBar /> */}
           </PersistGate>
         </Provider >
       </SafeAreaProvider>

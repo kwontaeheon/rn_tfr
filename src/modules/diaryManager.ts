@@ -1,11 +1,11 @@
 import { Reducer } from 'react';
 import { createAction, createReducer } from 'typesafe-actions';
-import axios from 'axios';
 
 export const addDiary = createAction('diary/ADD')<diaryData>();
 export const removeDiary = createAction('diary/REMOVE')<diaryData>();
 export const modifyDiary = createAction('diary/MODIFY')<diaryData>(); // payload 타입을 Generics 로 설정해주세요.
-export const fetchMoreDiary = createAction('diary/FETCH')<Array<diaryData>>(); 
+export const fetchMoreDiary = createAction('diary/FETCHMORE')<Array<diaryData>>(); 
+export const fetchDiary = createAction('diary/FETCH')<Array<diaryData>>(); 
 
 
 export interface diaryData {
@@ -52,7 +52,12 @@ const diaryManager  = createReducer(initialState)
     return ({ diary: state.diary.concat(action.payload)
       , lIdx: state.lIdx
        , rIdx: state.rIdx + action.payload.length });
-    });
+    })
+  .handleAction(fetchDiary, (state, action) => {
+    return ({ diary: action.payload
+      , lIdx: state.lIdx
+       , rIdx: action.payload.length });
+  });
   
 
 export default diaryManager;

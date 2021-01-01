@@ -18,7 +18,7 @@ PUT maumilgi-diary-contents
         },
         "nori_keywords": {
           "tokenizer": "my_nori_discard",
-          "filter": ["my_shingle", "my_posfilter"]
+          "filter": ["my_posfilter"]
         }
       },
       "tokenizer": {
