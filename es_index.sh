@@ -3,7 +3,6 @@ POST - 데이터 등록
 PUT - 데이터 수정
 DELETE - 데이터 제거
 
-
 DELETE maumilgi-diary-contents
 
 
@@ -39,8 +38,12 @@ PUT maumilgi-diary-contents
         },
         "my_posfilter": {
           "type": "nori_part_of_speech", 
-          "stoptags": ["E", "IC","J","MAG", "MAJ", "MM", "SP", "SSC", "SSO", "SC", "SE", "XPN", "XSA", "XSN", "XSV", "UNA", "NA", "VSV",
-          "VCP", "VA", "VV", "NNB", "XSN", "MM", "VX","VA", "VCN"]
+          "stoptags": [
+            
+            "E", "IC","J","MAG", "MAJ","SC","SE","SF","SH","SL","SN","SP","SSC","SSO","SY","UNA",
+                        "VA","VCN","VCP","VSV","VV","VX","XPN","XR","XSA","XSN","XSV"
+                        , "NNB", "NNBC",  "NA","NR"
+                        ]
         }
       },
       "number_of_shards": 5,
@@ -68,7 +71,6 @@ PUT maumilgi-diary-contents
             "fielddata": "true"    
           }
         }
-        
       },
       "contents": {
         "type": "text",
@@ -79,6 +81,14 @@ PUT maumilgi-diary-contents
             "type": "text",
             "analyzer": "nori_keywords",
             "fielddata": "true"    
+          },
+          "sentences": {
+            "type": "keyword"
+          },
+          "words": {
+            "type": "text",
+            "analyzer": "standard",
+            "fielddata" : "true"
           }
         }
       }
@@ -143,9 +153,12 @@ GET maumilgi-diary-contents/_search
 
 
 
-GET maumilgi-diary-contents/_termvectors/pQ5xrXYBa0Zs_6PFPrnd?fields=contents
-
-POST maumilgi-diary-contents/_doc
+GET maumilgi-diary-contents/_analyze
 {
-  "@timestamp": "2020-12-28T13:27:26.625Z","email": "kwontaeheon@gmail.com", "name": "Taeheon Kwon", "title": "나의 두번째 이야기",  "contents": "나의 두번째 글쓰기 입니다."
+  "analyzer": "nori_keywords",
+  "text": "나의 첫번째 글 쓰기 입니다.",
+  "explain" : true 
 }
+
+
+
