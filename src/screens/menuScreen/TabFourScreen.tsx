@@ -7,9 +7,9 @@ import { Text, View } from '../components/Themed';
 export default function TabFourScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>My Info</Text>
+      <Text style={styles.title}>정보수정</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.title}>Contribute</Text>
+      <Text style={styles.title}>만든이</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={styles.title}>OSS License</Text>
     </View>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    // fontWeight: 'bold',
+    fontWeight: 'bold',
   },
   separator: {
     marginVertical: 10,

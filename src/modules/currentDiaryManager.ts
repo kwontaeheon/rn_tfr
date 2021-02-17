@@ -6,6 +6,7 @@ export const modifyDiary = createAction('cdiary/MODIFY') <currentDiaryData>();
 
 
 export interface currentDiaryData {
+  cont_id: string;
   title: string;
   contents: string;
   query: string;
@@ -19,6 +20,7 @@ type CurrentDiaryState = {
 const initialState: CurrentDiaryState = {
   diary: 
   {
+    cont_id: "",
     title: "",
     contents: "",
     query: "",

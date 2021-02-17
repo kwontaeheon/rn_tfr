@@ -166,9 +166,9 @@ export default function useDiaryManager() {
   const rIdx = useSelector((state: RootState) => state.diaryManager.rIdx);
   const dispatch = useDispatch();
 
-  const onAddDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string) => dispatch(addDiary({timestamp, email, name, title, contents, id})), [dispatch]);
-  const onRemoveDiary = useCallback((timestamp: Date, email: string, name: string,  title: string , contents: string, id: string) => dispatch(removeDiary({timestamp, email, name, title, contents, id})), [dispatch]);
-  const onModifyDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string) => dispatch(modifyDiary({timestamp, email, name, title, contents, id})), [dispatch]);
+  const onAddDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, cont_id: string, publicTF: boolean) => dispatch(addDiary({timestamp, email, name, title, contents, cont_id, publicTF})), [dispatch]);
+  const onRemoveDiary = useCallback((timestamp: Date, email: string, name: string,  title: string , contents: string, cont_id: string, publicTF: boolean) => dispatch(removeDiary({timestamp, email, name, title, contents, cont_id, publicTF})), [dispatch]);
+  const onModifyDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, cont_id: string, publicTF: boolean) => dispatch(modifyDiary({timestamp, email, name, title, contents, cont_id, publicTF})), [dispatch]);
   
   const onFetchMoreDiary = useCallback((email: string, rIdx: number, queryString: string, initialTF: boolean)  => {
     
@@ -190,7 +190,8 @@ export default function useDiaryManager() {
             name:  resultArr[i]._source.name,
             title: resultArr[i]._source.title,
             contents: resultArr[i]._source.contents,
-            id: resultArr[i]._source.email + resultArr[i]._id
+            cont_id: resultArr[i]._source.cont_id,
+            publicTF: resultArr[i]._source.publicTF
           });
       }
         

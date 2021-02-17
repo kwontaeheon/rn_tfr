@@ -65,10 +65,12 @@ export default function TabTwoScreen({navigation}) {
               color: '#333333'
             }}
               placeholderTextColor="#333333"
-              placeholder="제목.." 
+              placeholder="Title.." 
               
               onChangeText={(text) => { 
                 onModifyCurrentDiary(
+                  currentDiary.cont_id,
+                  // currentDiary.title,
                   text, 
                   currentDiary.contents, 
                   currentDiary.query,
@@ -99,9 +101,10 @@ export default function TabTwoScreen({navigation}) {
                 multiline 
                 scrollEnabled
                 placeholderTextColor="#333333"
-                placeholder="내용..." 
+                placeholder="Content..." 
                 onChangeText={(text)=> { 
                   onModifyCurrentDiary(
+                    currentDiary.cont_id,
                     currentDiary.title, 
                     text, 
                     currentDiary.query,
@@ -121,12 +124,15 @@ export default function TabTwoScreen({navigation}) {
             <TouchableOpacity style={styles.button} 
                 onPress= {(text) => {
                   // title, contents, login.email;
+    const dt = new Date().toISOString()             
     const data = {
-      "@timestamp": new Date().toISOString(),
+      "@timestamp": dt,
       "email": login.email,
       "name": login.name,
       "title": currentDiary.title,
-      "contents": currentDiary.contents
+      "contents": currentDiary.contents,
+      "publictf": currentDiary.publicTF,
+      "cont_id": dt + "_" + login.email 
     }
 
     const config  = {
@@ -147,6 +153,7 @@ export default function TabTwoScreen({navigation}) {
         "",
         "",
         "",
+        "",
         ""
       ).then(rs => {
           onFetchMoreDiary(login.email, rIdx, rs.payload.query, true);
@@ -159,7 +166,7 @@ export default function TabTwoScreen({navigation}) {
                 }}
                 >
                 <Text style={styles.buttonTitle} 
-                >작성완료</Text>
+                >Post</Text>
              </TouchableOpacity>
               {/* <View style={{height:50}}/> */}
                 {/* </KeyboardAvoidingView> */}

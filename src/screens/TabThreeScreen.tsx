@@ -45,9 +45,11 @@ function TabThreeScreen() {
         
         <TextInput style={styles.searchBar} 
            placeholderTextColor='#333333'
-           placeholder="찾아보기.." 
+           placeholder="Search Public.." 
            onChangeText={(text)=> {
-              onModifyCurrentDiary(currentDiary.title, 
+              onModifyCurrentDiary(
+                currentDiary.cont_id,
+                currentDiary.title, 
                 currentDiary.contents , 
                 currentDiary.query ,
                 text).then(rs =>  {
