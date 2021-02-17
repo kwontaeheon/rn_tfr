@@ -7,9 +7,11 @@ import { Text, View } from '../components/Themed';
 export default function TabFourScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>정보수정 등.. 개발예정 화면</Text>
+      <Text style={styles.title}>정보수정</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabFourScreen.js" />
+      <Text style={styles.title}>만든이</Text>
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <Text style={styles.title}>OSS License</Text>
     </View>
   );
 }
@@ -21,11 +23,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 10,
     height: 1,
     width: '80%',
   },

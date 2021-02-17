@@ -71,7 +71,8 @@ export default function TabTwoScreen({navigation}) {
                 onModifyCurrentDiary(
                   text, 
                   currentDiary.contents, 
-                  currentDiary.query).then(rs => {
+                  currentDiary.query,
+                  currentDiary.queryPublic).then(rs => {
                     console.log(rs.payload.title)
                   })
               }}
@@ -103,7 +104,8 @@ export default function TabTwoScreen({navigation}) {
                   onModifyCurrentDiary(
                     currentDiary.title, 
                     text, 
-                    currentDiary.query).then(rs => {
+                    currentDiary.query,
+                    currentDiary.queryPublic).then(rs => {
                   console.log(rs.payload.contents)}) }}/>
 
             
@@ -145,6 +147,7 @@ export default function TabTwoScreen({navigation}) {
         "",
         "",
         "",
+        ""
       ).then(rs => {
           onFetchMoreDiary(login.email, rIdx, rs.payload.query, true);
            navigation.replace('Root')
