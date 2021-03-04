@@ -91,7 +91,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={ListScreen}
-        options={{ headerTitle: '찾아보기' , headerShown:false}}
+        options={{ headerTitle: 'List Private' , headerShown:false}}
       />
     </TabOneStack.Navigator>
   );
@@ -105,7 +105,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: '기록하기', headerShown:false }}
+        options={{ headerTitle: 'Write', headerShown:false }}
       />
     </TabTwoStack.Navigator>
   );
@@ -119,7 +119,7 @@ function TabThreeNavigator() {
       <TabThreeStack.Screen
         name="TabThreeScreen"
         component={TabThreeScreen}
-        options={{ headerTitle: '함께보기' , headerShown:false}}
+        options={{ headerTitle: 'List Public' , headerShown:false}}
       />
     </TabThreeStack.Navigator>
   );
@@ -133,7 +133,7 @@ function TabFourNavigator() {
       <TabFourStack.Screen
         name="TabFourScreen"
         component={TabFourScreen}
-        options={{ headerTitle: '정보수정' , headerShown:false}}
+        options={{ headerTitle: 'Info' , headerShown:false}}
       />
     </TabFourStack.Navigator>
   );

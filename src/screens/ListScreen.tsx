@@ -18,7 +18,7 @@ import { format } from "date-fns";  // https://date-fns.org/v2.16.1/docs/format
 
 
 
-function ListScreen() {
+function ListScreen({navigation}) {
   
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
   const { login , onLoginSuccess } = useLoginManager();
@@ -34,7 +34,10 @@ function _renderItem({ item }: { item: diaryData }) {
               item.title, 
               item.contents , 
               currentDiary.query,
-              currentDiary.queryPublic).then(() => console.log('modified'));
+              currentDiary.queryPublic).then(() => {
+                console.log('modified');
+                navigation.replace('Root', { screen: 'TabTwo' });
+               } );
             
            }}>
           <Text style={styles.title}>{item.title}</Text>

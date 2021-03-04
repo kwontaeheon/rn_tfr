@@ -83,7 +83,7 @@ export default function TabTwoScreen({navigation}) {
               
             
 
-              <TextInput defaultValue={currentDiary.title} style={{
+              <TextInput defaultValue={currentDiary.contents} style={{
                 borderColor: '#333333',
                 // borderWidth: 1,
                 // marginLeft: 30,
@@ -125,7 +125,12 @@ export default function TabTwoScreen({navigation}) {
             <TouchableOpacity style={styles.button} 
                 onPress= {(text) => {
                   // title, contents, login.email;
-    const dt = new Date().toISOString()             
+    const dt = new Date().toISOString();
+    var contId = dt + "_" + login.email ;
+    const orgId = currentDiary.cont_id;          
+    if (orgId != "") {
+      contId = orgId
+    }
     const data = {
       "@timestamp": dt,
       "email": login.email,
@@ -133,7 +138,7 @@ export default function TabTwoScreen({navigation}) {
       "title": currentDiary.title,
       "contents": currentDiary.contents,
       "publictf": currentDiary.publicTF,
-      "cont_id": dt + "_" + login.email 
+      "cont_id": contId
     }
 
     const config  = {
@@ -146,7 +151,7 @@ export default function TabTwoScreen({navigation}) {
     console.log(data);
     console.log(config);
 
-    axios.post('http://maum.cf:9222/maumilgi-diary-contents/_doc', data, config)
+    axios.post('http://maum.cf:9222/maumilgi-diary-contents/_doc/' + contId, data, config)
     .then(rs => { 
       //  console.log(rs.data)
       //  console.log(rs.request)
