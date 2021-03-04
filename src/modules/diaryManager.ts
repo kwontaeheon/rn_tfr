@@ -14,8 +14,9 @@ export interface diaryData {
   name: string;
   title: string;
   contents: string;
-  cont_id: string;
-  publicTF: boolean;
+  id: string;
+  public_tf: boolean;
+  
 }
 
 type DiaryState = {

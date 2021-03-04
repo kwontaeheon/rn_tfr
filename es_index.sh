@@ -162,3 +162,28 @@ GET maumilgi-diary-contents/_analyze
 
 
 
+GET maumilgi-diary-contents/_search 
+{
+  "from": 0,
+  "size": 1,
+  "sort": [{"@timestamp": "desc"}]
+}
+
+
+
+GET maumilgi-diary-contents/_termvectors/Lg_Fs3YBa0Zs_6PFdVlq?fields=contents.keywords
+
+POST maumilgi-diary-contents/_doc
+{
+  "@timestamp": "2020-12-28T13:27:26.625Z","email": "kwontaeheon@gmail.com", "name": "Taeheon Kwon", "title": "나의 두번째 이야기",  "contents": "나의 두번째 글쓰기 입니다."
+}
+
+
+POST maumilgi-diary-contents/_delete_by_query
+{
+  "query": {
+    "match": {
+      "email": "kwontaeheon@gmail.com"
+    }
+  }
+}

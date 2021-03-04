@@ -190,7 +190,7 @@ export default function usePublicDiaryManager() {
             name:  resultArr[i]._source.name,
             title: resultArr[i]._source.title,
             contents: resultArr[i]._source.contents,
-            cont_id: resultArr[i]._source.email + resultArr[i]._id
+            id: resultArr[i]._source.cont_id
           });
       }
         

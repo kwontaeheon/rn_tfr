@@ -166,9 +166,9 @@ export default function useDiaryManager() {
   const rIdx = useSelector((state: RootState) => state.diaryManager.rIdx);
   const dispatch = useDispatch();
 
-  const onAddDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, cont_id: string, publicTF: boolean) => dispatch(addDiary({timestamp, email, name, title, contents, cont_id, publicTF})), [dispatch]);
-  const onRemoveDiary = useCallback((timestamp: Date, email: string, name: string,  title: string , contents: string, cont_id: string, publicTF: boolean) => dispatch(removeDiary({timestamp, email, name, title, contents, cont_id, publicTF})), [dispatch]);
-  const onModifyDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, cont_id: string, publicTF: boolean) => dispatch(modifyDiary({timestamp, email, name, title, contents, cont_id, publicTF})), [dispatch]);
+  const onAddDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string, public_tf: boolean) => dispatch(addDiary({timestamp, email, name, title, contents, id, public_tf})), [dispatch]);
+  const onRemoveDiary = useCallback((timestamp: Date, email: string, name: string,  title: string , contents: string, id: string, public_tf: boolean) => dispatch(removeDiary({timestamp, email, name, title, contents, id, public_tf})), [dispatch]);
+  const onModifyDiary = useCallback((timestamp: Date, email: string, name: string, title: string , contents: string, id: string, public_tf: boolean) => dispatch(modifyDiary({timestamp, email, name, title, contents, id, public_tf})), [dispatch]);
   
   const onFetchMoreDiary = useCallback((email: string, rIdx: number, queryString: string, initialTF: boolean)  => {
     
@@ -190,8 +190,8 @@ export default function useDiaryManager() {
             name:  resultArr[i]._source.name,
             title: resultArr[i]._source.title,
             contents: resultArr[i]._source.contents,
-            cont_id: resultArr[i]._source.cont_id,
-            publicTF: resultArr[i]._source.publicTF
+            id: resultArr[i]._source.cont_id,
+            public_tf: resultArr[i]._source.public_tf
           });
       }
         

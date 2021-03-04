@@ -14,7 +14,7 @@ export interface diaryData {
   name: string;
   title: string;
   contents: string;
-  cont_id: string;
+  id: string;
 }
 
 type DiaryState = {

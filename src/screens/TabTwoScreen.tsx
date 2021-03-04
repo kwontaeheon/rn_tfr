@@ -75,7 +75,8 @@ export default function TabTwoScreen({navigation}) {
                   text, 
                   currentDiary.contents, 
                   currentDiary.query,
-                  currentDiary.queryPublic).then(rs => {
+                  currentDiary.queryPublic,
+                  currentDiary.public_tf).then(rs => {
                     console.log(rs.payload.title)
                   })
               }}
@@ -109,7 +110,8 @@ export default function TabTwoScreen({navigation}) {
                     currentDiary.title, 
                     text, 
                     currentDiary.query,
-                    currentDiary.queryPublic).then(rs => {
+                    currentDiary.queryPublic,
+                    currentDiary.public_tf).then(rs => {
                   console.log(rs.payload.contents)}) }}/>
 
             
@@ -137,8 +139,8 @@ export default function TabTwoScreen({navigation}) {
       "name": login.name,
       "title": currentDiary.title,
       "contents": currentDiary.contents,
-      "publictf": currentDiary.publicTF,
-      "cont_id": contId
+      "public_tf": "Y",
+      "cont_id": contId,
     }
 
     const config  = {
@@ -160,9 +162,10 @@ export default function TabTwoScreen({navigation}) {
         "",
         "",
         "",
-        ""
+        "",
+        "Y"
       ).then(rs => {
-          onFetchMoreDiary(login.email, rIdx, rs.payload.query, true);
+          onFetchMoreDiary(login.email, 0, rs.payload.query, true);
            navigation.replace('Root')
           }
         );

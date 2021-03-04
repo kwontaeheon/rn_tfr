@@ -11,6 +11,7 @@ export interface currentDiaryData {
   contents: string;
   query: string;
   queryPublic: string;
+  public_tf: string;
 }
 
 type CurrentDiaryState = {
@@ -24,7 +25,8 @@ const initialState: CurrentDiaryState = {
     title: "",
     contents: "",
     query: "",
-    queryPublic: ""
+    queryPublic: "",
+    public_tf: "",
   }
 };
 

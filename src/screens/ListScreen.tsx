@@ -30,18 +30,19 @@ function _renderItem({ item }: { item: diaryData }) {
   return (
       <TouchableOpacity style={styles.item} onPress={(ev) => {
             
-            onModifyCurrentDiary(item.cont_id, 
+            onModifyCurrentDiary(item.id, 
               item.title, 
               item.contents , 
               currentDiary.query,
-              currentDiary.queryPublic).then(() => {
+              currentDiary.queryPublic,
+              currentDiary.public_tf).then(() => {
                 console.log('modified');
                 navigation.replace('Root', { screen: 'TabTwo' });
                } );
             
            }}>
           <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.subtitle}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm ") + item.publicTF}</Text>
+          <Text style={styles.subtitle}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm ") + item.public_tf}</Text>
           <Text style={styles.subtitle}>{item.contents}</Text>
           {/* <Text style={styles.subtitle}>{item.class}</Text> */}
       </TouchableOpacity>
@@ -54,7 +55,7 @@ function _renderItem({ item }: { item: diaryData }) {
   
   return (
     
-    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, rIdx, currentDiary.query, true)} style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, 0, currentDiary.query, true)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View  style={styles.backgroundFull}>
         
@@ -66,7 +67,8 @@ function _renderItem({ item }: { item: diaryData }) {
               currentDiary.title, 
               currentDiary.contents , 
               text, 
-              currentDiary.queryPublic).then(rs =>  {
+              currentDiary.queryPublic,
+              currentDiary.public_tf).then(rs =>  {
               onFetchMoreDiary(login.email, rIdx, rs.payload.query, true)
               console.log("query: " + rs.payload.query + "text: " + text);
               });

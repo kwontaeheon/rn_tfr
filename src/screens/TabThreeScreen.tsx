@@ -52,7 +52,8 @@ function TabThreeScreen() {
                 currentDiary.title, 
                 currentDiary.contents , 
                 currentDiary.query ,
-                text).then(rs =>  {
+                text,
+                currentDiary.public_tf).then(rs =>  {
                 onFetchMoreDiary("", rIdx, rs.payload.queryPublic, true)
                 console.log("query: " + rs.payload.query + "text: " + text);
                 });
