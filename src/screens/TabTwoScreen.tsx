@@ -51,7 +51,7 @@ export default function TabTwoScreen({navigation}) {
                 keyboardVerticalOffset={100}
                 >
                */}
-              <TextInput style={{
+              <TextInput defaultValue={currentDiary.title} style={{
               borderColor: '#333333',
               borderBottomWidth: 1,
               marginLeft: 30,
@@ -62,7 +62,8 @@ export default function TabTwoScreen({navigation}) {
               fontSize: 15,
               textAlign: 'center',
               width: '80%',
-              color: '#333333'
+              color: '#333333',
+              
             }}
               placeholderTextColor="#333333"
               placeholder="Title.." 
@@ -82,7 +83,7 @@ export default function TabTwoScreen({navigation}) {
               
             
 
-              <TextInput style={{
+              <TextInput defaultValue={currentDiary.title} style={{
                 borderColor: '#333333',
                 // borderWidth: 1,
                 // marginLeft: 30,
