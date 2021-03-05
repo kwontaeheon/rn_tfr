@@ -10,7 +10,7 @@ import useCurrentDiaryManager from '../hooks/useCurrentDiary';
 
 
 import axios from 'axios';
-import Navigation from '../navigation';
+
 import useDiary from '../hooks/useDiary';
 
 const d = Dimensions.get("window")
@@ -22,7 +22,18 @@ export default function TabTwoScreen({navigation}) {
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} onLayout={() => {
+      console.log(navigation);
+    //   onModifyCurrentDiary( 
+    //   "",
+    //   "",
+    //   "",
+    //   "",
+    //   "",
+    //   "Y"
+    // );
+      }
+  }>
       
       <View style={{
         height: '90%', 
@@ -166,7 +177,7 @@ export default function TabTwoScreen({navigation}) {
         "Y"
       ).then(rs => {
           onFetchMoreDiary(login.email, 0, rs.payload.query, true);
-           navigation.replace('Root')
+          navigation.replace('Root')
           }
         );
      } )
