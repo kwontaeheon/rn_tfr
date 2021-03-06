@@ -9,7 +9,7 @@ import {
 import { Button,} from 'react-native';
 
 import usePublicDiaryManager from '../hooks/usePublicDiary';
-import useCurrentDiaryManager from '../hooks/useCurrentDiary';
+import useModifyDiaryManager from '../hooks/useModifyDiary';
 import { diaryData } from '../modules/publicDiaryManager';
 import useLoginManager from '../hooks/useLogin';
 import { format } from "date-fns";  // https://date-fns.org/v2.16.1/docs/format
@@ -31,7 +31,7 @@ function TabThreeScreen() {
   let queryString: string = "";
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = usePublicDiaryManager();
   const { login , onLoginSuccess } = useLoginManager();
-  const { currentDiary,  onModifyCurrentDiary} = useCurrentDiaryManager();
+  const { modifyDiary,  onModifyMDiary} = useModifyDiaryManager();
 
 //    useEffect(() => {
   // onFetchMoreDiary(login.email, rIdx);
@@ -39,7 +39,7 @@ function TabThreeScreen() {
   
   return (
     
-    <SafeAreaView onLayout={() => onFetchMoreDiary("", rIdx , "", true)} style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary("", 0 , "", true)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View  style={styles.backgroundFull}>
         
@@ -47,23 +47,25 @@ function TabThreeScreen() {
            placeholderTextColor='#333333'
            placeholder="Search Public.." 
            onChangeText={(text)=> {
-              onModifyCurrentDiary(
-                currentDiary.cont_id,
-                currentDiary.title, 
-                currentDiary.contents , 
-                currentDiary.query ,
-                text,
-                currentDiary.public_tf).then(rs =>  {
-                onFetchMoreDiary("", rIdx, rs.payload.queryPublic, true)
-                console.log("query: " + rs.payload.query + "text: " + text);
-                });
+            onFetchMoreDiary("", 0, text, true)
+            console.log("text: " + text);
+
+              // onModifyCurrentDiary(
+              //   currentDiary.cont_id,
+              //   currentDiary.title, 
+              //   currentDiary.contents , 
+              //   currentDiary.query ,
+              //   text,
+              //   currentDiary.public_tf).then(rs =>  {
+                
+              //   });
               }}/>
         {/* <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text> */}
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
             onEndReachedThreshold={0.4}
-            onEndReached={() => onFetchMoreDiary("", rIdx, currentDiary.queryPublic, false)} 
+            onEndReached={() => onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 

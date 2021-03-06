@@ -172,7 +172,8 @@ export default function useDiaryManager() {
   
   const onFetchMoreDiary = useCallback((email: string, rIdx: number, queryString: string, initialTF: boolean)  => {
     
-    
+    console.log(rIdx, initialTF);
+
     getContentsAfter(email, rIdx, queryString, initialTF).then(result => {
         // console.log(result.config);
         // console.log(result.status);
@@ -180,7 +181,7 @@ export default function useDiaryManager() {
         // console.log(result.data);
         // console.log(new Date());
       const resultArr = result.data.hits.hits 
-      console.log(resultArr);
+      // console.log(resultArr);
       let resTypedArr = Array<diaryData>();
       //for문을 돌면서 contact[i]의 key 값을 가져와 value값 출력해준다.
       for (var i = 0; i < resultArr.length; i++) {

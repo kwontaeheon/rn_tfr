@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { View, Text } from '../components/Themed';
 import {
@@ -6,39 +6,41 @@ import {
 } from 'react-native';
 
 
-import { Button,} from 'react-native';
+import { Modal, Pressable } from 'react-native';
 
 import useDiary from '../hooks/useDiary';
 import { diaryData } from '../modules/diaryManager';
 import useLoginManager from '../hooks/useLogin';
 import {loginData} from '../modules/loginManager';
-import useCurrentDiaryManager from '../hooks/useCurrentDiary';
+import useModifyDiaryManager from '../hooks/useModifyDiary';
 import { format } from "date-fns";  // https://date-fns.org/v2.16.1/docs/format
 
 
 
+import ModifyScreen from './ModifyScreen';
 
 function ListScreen({navigation}) {
   
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiary();
   const { login , onLoginSuccess } = useLoginManager();
-  const { currentDiary,  onModifyCurrentDiary} = useCurrentDiaryManager();
-
-
+  const { modifyDiary,  onModifyMDiary} = useModifyDiaryManager();
+  const [modalVisible, setModalVisible] = useState(false);
+  
 
 function _renderItem({ item }: { item: diaryData }) {
   return (
       <TouchableOpacity style={styles.item} onPress={(ev) => {
             
-            onModifyCurrentDiary(item.id, 
+            onModifyMDiary(item.id, 
               item.title, 
               item.contents , 
-              currentDiary.query,
-              currentDiary.queryPublic,
-              currentDiary.public_tf).then(() => {
+              modifyDiary.query,
+              modifyDiary.queryPublic,
+              modifyDiary.public_tf).then(() => {
                 console.log('modified');
-                navigation.replace('Root', { screen: 'TabTwo' });
+                // navigation.replace('Root', { screen: 'TabTwo' });
                } );
+             setModalVisible(true)
             
            }}>
           <Text style={styles.title}>{item.title}</Text>
@@ -55,7 +57,7 @@ function _renderItem({ item }: { item: diaryData }) {
   
   return (
     
-    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, 0, currentDiary.query, true)} style={styles.container}>
+    <SafeAreaView onLayout={() => onFetchMoreDiary(login.email, 0, modifyDiary.query, true)} style={styles.container}>
     <ImageBackground source={require('../../assets/images/nyn2.jpg')} style={styles.image}>
       <View  style={styles.backgroundFull}>
         
@@ -63,22 +65,52 @@ function _renderItem({ item }: { item: diaryData }) {
            placeholderTextColor='#333333'
            placeholder="Search.." 
            onChangeText={(text)=>{ 
-            onModifyCurrentDiary(currentDiary.cont_id, 
-              currentDiary.title, 
-              currentDiary.contents , 
-              text, 
-              currentDiary.queryPublic,
-              currentDiary.public_tf).then(rs =>  {
-              onFetchMoreDiary(login.email, rIdx, rs.payload.query, true)
-              console.log("query: " + rs.payload.query + "text: " + text);
-              });
+            onFetchMoreDiary(login.email, 0, text, true)
+            console.log("text: " + text);
+
+            // onModifyCurrentDiary(currentDiary.cont_id, 
+            //   currentDiary.title, 
+            //   currentDiary.contents , 
+            //   text, 
+            //   currentDiary.queryPublic,
+            //   currentDiary.public_tf).then(rs =>  {
+              
+            //   });
             }}/>
         {/* <Text>lidx: {lIdx} rIDx: {rIdx} email: {login.email}</Text> */}
+        <View style={styles.centeredView}>
+            <Modal
+            animationType="fade"
+            transparent={false}
+            visible={modalVisible}
+            onRequestClose={() => {
+              console.log("Modal has been closed.");
+              setModalVisible(!modalVisible);
+            }}
+          >
+              
+                {ModifyScreen({navigation,  modifyTF: true})}
+                
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textStyle}>Cancel</Text>
+                </Pressable>
+              
+          </Modal>
+          {/* <Pressable
+            style={[styles.button, styles.buttonOpen]}
+            onPress={() =>{console.log(modalVisible); }}
+          >
+            <Text style={styles.textStyle}>Show Modal</Text>
+          </Pressable> */}
+        </View>
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
-            onEndReachedThreshold={0.9}
-            onEndReached={() => onFetchMoreDiary(login.email, rIdx, currentDiary.query, false)} 
+            // onEndReachedThreshold={0.9}
+            // onEndReached={() => onFetchMoreDiary(login.email, rIdx, modifyDiary.query, false)} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 
@@ -93,6 +125,53 @@ const d = Dimensions.get("window")
 
 
 const styles = StyleSheet.create({
+  centeredView: {
+    
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    // borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    // backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "#333333",
+    fontSize: 15,
+    borderColor: '#333333',
+    borderTopWidth: 1,
+    paddingTop: 10,
+    width: '85%',
+    alignSelf: 'center',
+    height: 30,
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
   container: {
     // flex: 1,
     alignItems: 'center',

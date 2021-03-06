@@ -2,10 +2,10 @@ import { Reducer } from 'react';
 import { createAction, createReducer } from 'typesafe-actions';
 import axios from 'axios';
 
-export const modifyCurrentDiary = createAction('cdiary/MODIFY') <currentDiaryData>();
+export const modifyMDiary = createAction('mdiary/MODIFY') <modifyDiaryData>();
 
 
-export interface currentDiaryData {
+export interface modifyDiaryData {
   cont_id: string;
   title: string;
   contents: string;
@@ -14,11 +14,11 @@ export interface currentDiaryData {
   public_tf: string;
 }
 
-type CurrentDiaryState = {
-  diary: currentDiaryData
+type ModifyDiaryState = {
+  diary: modifyDiaryData
 }
 
-const initialState: CurrentDiaryState = {
+const initialState: ModifyDiaryState = {
   diary: 
   {
     cont_id: "",
@@ -33,11 +33,10 @@ const initialState: CurrentDiaryState = {
 
 
 
-const currentDiaryManager  = createReducer(initialState)
-  .handleAction(modifyCurrentDiary, (state, action) => {
-    
+const modifyDiaryManager  = createReducer(initialState)
+  .handleAction(modifyMDiary, (state, action) => {
     console.log('payload:' , action.payload);
     return ({ 
     diary: action.payload })});  
 
-export default currentDiaryManager;
+export default modifyDiaryManager;

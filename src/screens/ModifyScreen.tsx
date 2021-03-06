@@ -6,7 +6,7 @@ import {
  SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform
 } from 'react-native';
 import useLoginManager from '../hooks/useLogin';
-import useCurrentDiaryManager from '../hooks/useCurrentDiary';
+import useModifyDiaryManager from '../hooks/useModifyDiary';
 
 
 import axios from 'axios';
@@ -17,15 +17,12 @@ import { useState } from 'react';
 const d = Dimensions.get("window")
 
 
-export default function TabTwoScreen({navigation}) {
+export default function ModifyScreen({navigation, modifyTF=false}) {
   const { login , onLoginSuccess } = useLoginManager();
-  const { currentDiary,  onModifyCurrentDiary} = useCurrentDiaryManager();
+  const { modifyDiary,  onModifyMDiary} = useModifyDiaryManager();
+  console.log(modifyDiary);
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiaryManager();
-  useFocusEffect(
-      () => {
-      console.log('here');
-      }
-  )
+  
   return (
     <SafeAreaView style={styles.container} onResponderStart={() => {
       // console.log(navigation);
@@ -43,7 +40,7 @@ export default function TabTwoScreen({navigation}) {
         flexDirection: 'column'
       }}
         >
-        <TextInput defaultValue={currentDiary.title} style={{
+        <TextInput defaultValue={modifyDiary.title} style={{
         borderColor: '#333333',
         borderBottomWidth: 1,
         marginLeft: 30,
@@ -61,14 +58,14 @@ export default function TabTwoScreen({navigation}) {
         placeholder="Title.." 
         
         onChangeText={(text) => { 
-          onModifyCurrentDiary(
-            currentDiary.cont_id,
+          onModifyMDiary(
+            modifyDiary.cont_id,
             // currentDiary.title,
             text, 
-            currentDiary.contents, 
-            currentDiary.query,
-            currentDiary.queryPublic,
-            currentDiary.public_tf).then(rs => {
+            modifyDiary.contents, 
+            modifyDiary.query,
+            modifyDiary.queryPublic,
+            modifyDiary.public_tf).then(rs => {
               console.log(rs.payload.title)
             })
         }}
@@ -76,7 +73,7 @@ export default function TabTwoScreen({navigation}) {
               
             
 
-        <TextInput defaultValue={currentDiary.contents} style={{
+        <TextInput defaultValue={modifyDiary.contents} style={{
           borderColor: '#333333',
           // borderWidth: 1,
           // marginLeft: 30,
@@ -97,13 +94,13 @@ export default function TabTwoScreen({navigation}) {
           placeholderTextColor="#333333"
           placeholder="Content..." 
           onChangeText={(text)=> { 
-            onModifyCurrentDiary(
-              currentDiary.cont_id,
-              currentDiary.title, 
+            onModifyMDiary(
+              modifyDiary.cont_id,
+              modifyDiary.title, 
               text, 
-              currentDiary.query,
-              currentDiary.queryPublic,
-              currentDiary.public_tf).then(rs => {
+              modifyDiary.query,
+              modifyDiary.queryPublic,
+              modifyDiary.public_tf).then(rs => {
             console.log(rs.payload.contents)}) }}/>
       </View>
       <View style={{
@@ -117,7 +114,7 @@ export default function TabTwoScreen({navigation}) {
                   // title, contents, login.email;
         const dt = new Date().toISOString();
         var contId = dt + "_" + login.email ;
-        const orgId = currentDiary.cont_id;          
+        const orgId = modifyDiary.cont_id;          
         if (orgId != "") {
           contId = orgId
         }
@@ -125,8 +122,8 @@ export default function TabTwoScreen({navigation}) {
           "@timestamp": dt,
           "email": login.email,
           "name": login.name,
-          "title": currentDiary.title,
-          "contents": currentDiary.contents,
+          "title": modifyDiary.title,
+          "contents": modifyDiary.contents,
           "public_tf": "Y",
           "cont_id": contId,
         }
@@ -145,7 +142,7 @@ export default function TabTwoScreen({navigation}) {
         .then(rs => { 
           //  console.log(rs.data)
           //  console.log(rs.request)
-          onModifyCurrentDiary(
+          onModifyMDiary(
             "",
             "",
             "",

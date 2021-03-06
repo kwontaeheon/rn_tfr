@@ -12,8 +12,10 @@ import TabThreeScreen from '../screens/TabThreeScreen';
 import TabFourScreen from '../screens/TabFourScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList } from '../../types';
 import ListScreen from '../screens/ListScreen';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+
+const BottomTab = createMaterialTopTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -21,12 +23,14 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
+      tabBarPosition="bottom"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint ,
         style: {
-         height : 40
+         height : 50
         },
-        keyboardHidesTabBar: false,
         showLabel: false,
+        showIcon: true
+        
       }}>
       <BottomTab.Screen
         name="TabOne"
