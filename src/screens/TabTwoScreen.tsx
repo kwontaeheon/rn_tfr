@@ -153,8 +153,9 @@ export default function TabTwoScreen({navigation}) {
             "",
             "Y"
           ).then(rs => {
-              onFetchMoreDiary(login.email, 0, rs.payload.query, true);
-              navigation.replace('Root')
+            navigation.replace('Root')  
+            onFetchMoreDiary(login.email, 0, rs.payload.query, true)
+              
               }
             );
         } )

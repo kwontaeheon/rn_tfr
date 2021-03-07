@@ -64,7 +64,8 @@ function TabThreeScreen() {
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
-            onEndReachedThreshold={0.4}
+            onRefresh={() => onFetchMoreDiary(login.email, 0, modifyDiary.query, true)}
+            onEndReachedThreshold={0.9}
             onEndReached={() =>{
               //  onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)
                if (rIdx >= 50) {

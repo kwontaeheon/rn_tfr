@@ -109,6 +109,7 @@ function _renderItem({ item }: { item: diaryData }) {
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
+            onRefresh={() => onFetchMoreDiary(login.email, 0, modifyDiary.query, true)}
             onEndReachedThreshold={0.9}
             onEndReached={() => {
               if (rIdx >= 50) {
