@@ -152,7 +152,7 @@ function getContentsAfter(email: string, rIdx: number, queryString: string, init
         'Authorization': 'Basic dmlld2VyOnJuanN4b2dqc0Ax'
       }
     }
-    console.log(queryBase);
+    // console.log(queryBase);
     return axios.post('http://maum.cf:9222/maumilgi-diary-contents/_search', queryBase, config);
     
   ; 

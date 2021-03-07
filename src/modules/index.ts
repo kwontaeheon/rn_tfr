@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import diaryManager from './diaryManager';
 import currentDiaryManager from './currentDiaryManager';
+import currentPublicDiaryManager from './currentPublicDiaryManager';
 import modifyDiaryManager from './modifyDiaryManager';
 import loginManager from './loginManager';
 import publicDiaryManager from './publicDiaryManager';
@@ -26,6 +27,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   currentDiaryManager,
+  currentPublicDiaryManager,
   modifyDiaryManager,
   diaryManager,
   loginManager,

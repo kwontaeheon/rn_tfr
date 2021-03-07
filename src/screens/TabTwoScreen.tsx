@@ -27,11 +27,10 @@ export default function TabTwoScreen({navigation}) {
       }
   )
   return (
-    <SafeAreaView style={styles.container} onResponderStart={() => {
-      // console.log(navigation);
-      }}>
+    <SafeAreaView  style={styles.container}>
       
-      <View style={{
+      <View 
+        style={{
         height: '90%', 
         backgroundColor: '#FFFFFF', 
         flex: 1, 
@@ -43,7 +42,9 @@ export default function TabTwoScreen({navigation}) {
         flexDirection: 'column'
       }}
         >
-        <TextInput defaultValue={currentDiary.title} style={{
+        <TextInput defaultValue={currentDiary.title} 
+        
+        style={{
         borderColor: '#333333',
         borderBottomWidth: 1,
         marginLeft: 30,
@@ -92,10 +93,12 @@ export default function TabTwoScreen({navigation}) {
           color: '#333333'
           
         }}
+        
           multiline 
           scrollEnabled
           placeholderTextColor="#333333"
           placeholder="Content..." 
+          
           onChangeText={(text)=> { 
             onModifyCurrentDiary(
               currentDiary.cont_id,
@@ -104,7 +107,8 @@ export default function TabTwoScreen({navigation}) {
               currentDiary.query,
               currentDiary.queryPublic,
               currentDiary.public_tf).then(rs => {
-            console.log(rs.payload.contents)}) }}/>
+            console.log(rs.payload.contents)
+            }) }}/>
       </View>
       <View style={{
         height: 40,
@@ -139,7 +143,7 @@ export default function TabTwoScreen({navigation}) {
         }
         // console.log(paramJson);
         console.log(data);
-        console.log(config);
+        // console.log(config);
 
         axios.post('http://maum.cf:9222/maumilgi-diary-contents/_doc/' + contId, data, config)
         .then(rs => { 
@@ -159,7 +163,9 @@ export default function TabTwoScreen({navigation}) {
               }
             );
         } )
-        .catch((error) => console.log( error.response.request._response ) );
+        .catch((error) => 
+           console.log( error.response.request._response )
+         );
 
                     }}>
         <Text style={styles.buttonTitle}>Post</Text>

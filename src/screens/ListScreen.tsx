@@ -43,9 +43,10 @@ function _renderItem({ item }: { item: diaryData }) {
              setModalVisible(true)
             
            }}>
-          <Text style={styles.title}>{item.title}</Text>
+          
+          <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
           <Text style={styles.subtitle}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm ") + item.public_tf}</Text>
-          <Text style={styles.subtitle}>{item.contents}</Text>
+          <Text numberOfLines={5} style={styles.subtitle}>{item.contents}</Text>
           {/* <Text style={styles.subtitle}>{item.class}</Text> */}
       </TouchableOpacity>
   );
