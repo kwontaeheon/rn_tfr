@@ -25,7 +25,7 @@ function ListScreen({navigation}) {
   const { login , onLoginSuccess } = useLoginManager();
   const { modifyDiary,  onModifyMDiary} = useModifyDiaryManager();
   const [modalVisible, setModalVisible] = useState(false);
-  
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
 function _renderItem({ item }: { item: diaryData }) {
   return (
@@ -110,6 +110,7 @@ function _renderItem({ item }: { item: diaryData }) {
             initialNumToRender={50}
             renderItem={_renderItem} 
             onRefresh={() => onFetchMoreDiary(login.email, 0, modifyDiary.query, true)}
+            refreshing={isRefreshing} // state
             onEndReachedThreshold={0.9}
             onEndReached={() => {
               if (rIdx >= 50) {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { View, Text } from '../components/Themed';
 import {
@@ -32,7 +32,7 @@ function TabThreeScreen() {
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = usePublicDiaryManager();
   const { login , onLoginSuccess } = useLoginManager();
   const { modifyDiary,  onModifyMDiary} = useModifyDiaryManager();
-
+  const [isRefreshing, setIsRefreshing] = useState(false);
 //    useEffect(() => {
   // onFetchMoreDiary(login.email, rIdx);
   // })
@@ -64,8 +64,9 @@ function TabThreeScreen() {
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
-            onRefresh={() => onFetchMoreDiary(login.email, 0, modifyDiary.query, true)}
+            onRefresh={() => onFetchMoreDiary(login.email, 0, modifyDiary.queryPublic, true)}
             onEndReachedThreshold={0.9}
+            refreshing={isRefreshing} // state
             onEndReached={() =>{
               //  onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)
                if (rIdx >= 50) {
