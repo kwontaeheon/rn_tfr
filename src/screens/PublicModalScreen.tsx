@@ -69,15 +69,17 @@ export default function PublicModalScreen({navigation, modifyTF=false}) {
           // borderWidth: 1,
           // marginLeft: 30,
           // marginRight: 30,
-          marginTop: 30,
+          // paddingTop: 30,
           // marginBottom: 30,
-          padding: 20,
-          height: '70%',
+          // padding: 20,
+          height: '100%',
           width: '95%',
           fontSize: 15,
           textAlign: 'left',
           textAlignVertical: 'top',
-          color: '#333333'
+          color: '#333333',
+          
+          padding: 30
           
         }}>{currentPublicDiary.contents} </Text>
       </ScrollView>
