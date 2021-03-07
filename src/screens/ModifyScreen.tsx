@@ -112,11 +112,14 @@ export default function ModifyScreen({navigation, modifyTF=false}) {
       <TouchableOpacity style={styles.button} 
         onPress= {(text) => {
                   // title, contents, login.email;
-        const dt = new Date().toISOString();
+        var dt = new Date().toISOString();
         var contId = dt + "_" + login.email ;
         const orgId = modifyDiary.cont_id;          
+        console.log("HERE", modifyDiary)
         if (orgId != "") {
           contId = orgId
+          dt = modifyDiary.cont_id.split("_")[0]
+          console.log("dt not changed")
         }
         const data = {
           "@timestamp": dt,
@@ -135,8 +138,8 @@ export default function ModifyScreen({navigation, modifyTF=false}) {
           }
         }
         // console.log(paramJson);
-        console.log(data);
-        console.log(config);
+        // console.log(data);
+        // console.log(config);
 
         axios.post('http://maum.cf:9222/maumilgi-diary-contents/_doc/' + contId, data, config)
         .then(rs => { 

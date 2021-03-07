@@ -65,7 +65,15 @@ function TabThreeScreen() {
             initialNumToRender={50}
             renderItem={_renderItem} 
             onEndReachedThreshold={0.4}
-            onEndReached={() => onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)} 
+            onEndReached={() =>{
+              //  onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)
+               if (rIdx >= 50) {
+                console.log("log more than threshold", rIdx)
+                onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)
+              } else {
+                console.log("less than threshold", rIdx)
+              }
+            }} 
             style={styles.listContainer} />
       </View>
     </ImageBackground> 

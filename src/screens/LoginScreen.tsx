@@ -28,7 +28,7 @@ export default function LoginScreen({
     
 
     const config = {
-      // expoClientId: `705980003268-8ct5qea5r1vge6ve3qk6sspq10h0bq82.apps.googleusercontent.com`,
+      // clientId: `705980003268-8ct5qea5r1vge6ve3qk6sspq10h0bq82.apps.googleusercontent.com`,
       // iosClientId: `<YOUR_IOS_CLIENT_ID>`,
       androidClientId: `705980003268-ajooolpei4vgbbfqkm61u71n6jl4nsen.apps.googleusercontent.com`,
       // iosStandaloneAppClientId: `<YOUR_IOS_CLIENT_ID>`,
