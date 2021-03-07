@@ -112,14 +112,14 @@ function _renderItem({ item }: { item: diaryData }) {
         <FlatList data={diary} 
             initialNumToRender={50}
             renderItem={_renderItem} 
-            onRefresh={() => onFetchMoreDiary(login.email, 0, modifyDiary.queryPublic, true)}
+            onRefresh={() => onFetchMoreDiary(login.email, 0, currentPublicDiary.queryPublic, true)}
             onEndReachedThreshold={0.9}
             refreshing={isRefreshing} // state
             onEndReached={() =>{
               //  onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)
                if (rIdx >= 50) {
                 console.log("log more than threshold", rIdx)
-                onFetchMoreDiary("", rIdx, modifyDiary.queryPublic, false)
+                onFetchMoreDiary("", rIdx, currentPublicDiary.queryPublic, false)
               } else {
                 console.log("less than threshold", rIdx)
               }
