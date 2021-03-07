@@ -48,8 +48,9 @@ function _renderItem({ item }: { item: diaryData }) {
          setModalVisible(true)
         
        }}>
-          <Text numberOfLines={1}  style={styles.title}>{item.title}</Text>
-          <Text style={styles.subtitle}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm")}</Text>
+          <Text style={styles.title}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm")}</Text>
+          <Text numberOfLines={1}  style={styles.subtitle}>{item.title}</Text>
+          
           <Text numberOfLines={5}  style={styles.subtitle}>{item.contents}</Text>
           {/* <Text style={styles.subtitle}>{item.class}</Text> */}
       </TouchableOpacity>
@@ -241,22 +242,23 @@ const styles = StyleSheet.create({
       // flexDirection: 'row', 
   },
   item: {
-      height: 150,
+      // height: 150,
       borderBottomWidth: 1,
       // borderTopWidth: 1,
       borderColor: '#333333',
       padding: 10
   },
   title: {
-      fontSize: 15,
+      fontSize: 16,
       
       color: '#333333',
       // fontWeight: 'bold'
   },
   subtitle: {
       left: 10,
+      marginRight: 20,
       color: '#333333',
-      fontSize: 15
+      fontSize: 16
   }
 });
 
