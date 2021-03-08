@@ -3,7 +3,7 @@ import * as React from 'react';
 import { View, Text } from '../components/Themed';
 
 import {
- SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform
+ SafeAreaView,  StyleSheet, ImageBackground, TextInput,  TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform, Pressable
 } from 'react-native';
 import useLoginManager from '../hooks/useLogin';
 import useModifyDiaryManager from '../hooks/useModifyDiary';
@@ -17,7 +17,7 @@ import { useState } from 'react';
 const d = Dimensions.get("window")
 
 
-export default function ModifyScreen({navigation, modifyTF=false}) {
+export default function ModifyScreen({navigation, modalVisible=false, setModalVisible}) {
   const { login , onLoginSuccess } = useLoginManager();
   const { modifyDiary,  onModifyMDiary} = useModifyDiaryManager();
   console.log(modifyDiary);
@@ -86,9 +86,10 @@ export default function ModifyScreen({navigation, modifyTF=false}) {
           fontSize: 15,
           textAlign: 'left',
           textAlignVertical: 'top',
-          color: '#333333'
-          
+          color: '#333333',
+          // elevation: 1,  
         }}
+        
           multiline 
           scrollEnabled
           placeholderTextColor="#333333"
@@ -104,7 +105,7 @@ export default function ModifyScreen({navigation, modifyTF=false}) {
             console.log(rs.payload.contents)}) }}/>
       </View>
       <View style={{
-        height: 40,
+        height: 80,
         backgroundColor: '#FFFFFF', 
         width: '100%', 
         
@@ -163,7 +164,14 @@ export default function ModifyScreen({navigation, modifyTF=false}) {
                     }}>
         <Text style={styles.buttonTitle}>Post</Text>
       </TouchableOpacity>
+      <Pressable
+                  style={[styles.button2, styles.buttonClose]}
+                  onPress={() => { setModalVisible(false)}}
+                >
+                  <Text style={styles.textStyle}>Cancel</Text>
+                </Pressable>
     </View>
+    
         
     </SafeAreaView>
     
@@ -197,6 +205,17 @@ const styles = StyleSheet.create({
        width: '100%',
        borderRadius: 5
       },
+      textStyle: {
+        color: "#333333",
+        fontSize: 15,
+        borderColor: '#333333',
+        borderTopWidth: 1,
+        paddingTop: 10,
+        width: '85%',
+        alignSelf: 'center',
+        height: 30,
+        textAlign: "center"
+      },
   button: {
     flex: 1,
     alignItems: 'center',
@@ -208,9 +227,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     display:'flex',
     width: '80%',
-    height: 50,
+    height: 30,
     paddingTop: 20,
-    paddingBottom: 10,
+    // paddingBottom: 10,
     // marginTop: 10,
     // marginBottom: 10,
   },
@@ -219,5 +238,17 @@ const styles = StyleSheet.create({
     color: '#333333',
     height: 30,
     position: 'relative'
-  }
+  },
+  button2: {
+    // borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    // backgroundColor: "#2196F3",
+  },
 });

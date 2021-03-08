@@ -48,7 +48,7 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => 
           <TabBarIcon 
-           name="search" // "ios-contacts"
+           name="ios-book-sharp" // "ios-contacts"
            color={color} 
            />,
         }}
@@ -59,7 +59,7 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => 
           <TabBarIcon 
-           name="ios-aperture" 
+           name="ios-aperture-sharp" 
            color={color} 
            />,
         }}
@@ -70,7 +70,7 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => 
           <TabBarIcon 
-          name="ios-information-circle"
+          name="ios-menu"
            color={color} />,
         }}
       />

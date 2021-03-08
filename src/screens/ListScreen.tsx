@@ -44,11 +44,11 @@ function _renderItem({ item }: { item: diaryData }) {
              setModalVisible(true)
             
            }}>
+          <Text numberOfLines={1} style={styles.title}>{item.title}</Text> 
+          <Text style={styles.tstamp}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm ") + item.public_tf}</Text>
+         
           
-          <Text style={styles.title}>{format(new Date(item.timestamp), "eeee yyyy/MM/dd HH:mm ") + item.public_tf}</Text>
-          <Text numberOfLines={1} style={styles.subtitle}>{item.title}</Text>
-          
-          <Text numberOfLines={5} style={styles.subtitle}>{item.contents}</Text>
+          <Text numberOfLines={30} style={styles.subtitle}>{item.contents}</Text>
           {/* <Text style={styles.subtitle}>{item.class}</Text> */}
       </TouchableOpacity>
       
@@ -93,14 +93,9 @@ function _renderItem({ item }: { item: diaryData }) {
             }}
           >
               
-                {ModifyScreen({navigation,  modifyTF: true})}
+                {ModifyScreen({navigation,  modifyTF: modalVisible, setModalVisible})}
                 
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.textStyle}>Cancel</Text>
-                </Pressable>
+              
               
           </Modal>
           {/* <Pressable
@@ -159,10 +154,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
-  button: {
+  button2: {
     // borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -247,18 +243,23 @@ const styles = StyleSheet.create({
       borderColor: '#333333',
       padding: 10
   },
-  title: {
-      fontSize: 16,
-          
-      color: '#333333',
-      // fontWeight: 'bold'
-  },
-  subtitle: {
-      left: 10,
-      marginRight: 20,
-      color: '#333333',
-      fontSize: 16
-  }
+  tstamp: {
+    fontSize: 16,    
+    color: '#333333',
+    // fontWeight: 'bold'
+    textAlign: 'right'
+},
+title: {
+  marginRight: 20,
+  color: '#333333',
+  fontSize: 18
+},
+subtitle: {
+    left: 10,
+    marginRight: 20,
+    color: '#333333',
+    fontSize: 16
+}
 });
 
 
