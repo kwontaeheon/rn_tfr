@@ -24,30 +24,33 @@ export default function ModifyScreen({navigation, modalVisible=false, setModalVi
   const { diary, lIdx, rIdx, onAddDiary, onRemoveDiary, onModifyDiary, onFetchMoreDiary } = useDiaryManager();
   
   return (
-    <SafeAreaView style={styles.container} onResponderStart={() => {
-      // console.log(navigation);
-      }}>
+    // <SafeAreaView style={styles.container} onResponderStart={() => {
+    //   // console.log(navigation);
+    //   }}>
       
-      <View style={{
-        height: '90%', 
-        backgroundColor: '#FFFFFF', 
-        flex: 1, 
-        width: '100%', 
-        borderRadius: 0,
-        paddingTop: '5%',
-        alignContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column'
-      }}
-        >
+      <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : undefined} 
+      keyboardVerticalOffset={60} 
+      style={styles.container
+      //   {
+      //    height: '100%', 
+      //   backgroundColor: '#FFFFFF', 
+        
+      //   width: '100%', 
+      //   borderRadius: 0,
+      //   paddingTop: '5%',
+      //   alignContent: 'center',
+      //   alignItems: 'center',
+      //   paddingVertical: 10
+      // }
+    }>
         <TextInput defaultValue={modifyDiary.title} style={{
         borderColor: '#333333',
         borderBottomWidth: 1,
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 40,
+        paddingTop: 40,
         paddingBottom: 5,
-        height: 40,
+        height: 80,
         fontSize: 15,
         textAlign: 'center',
         width: '80%',
@@ -73,14 +76,20 @@ export default function ModifyScreen({navigation, modalVisible=false, setModalVi
               
             
 
-        <TextInput defaultValue={modifyDiary.contents} style={{
+        <TextInput defaultValue={modifyDiary.contents} 
+        
+        style={{
           borderColor: '#333333',
           // borderWidth: 1,
           // marginLeft: 30,
           // marginRight: 30,
-          marginTop: 30,
+          // marginTop: 30,
           // marginBottom: 30,
-          padding: 20,
+          paddingLeft: 20,
+          paddingRight: 20,
+          paddingTop: 20,
+          paddingBottom: 10,
+          
           height: '70%',
           width: '95%',
           fontSize: 15,
@@ -103,13 +112,13 @@ export default function ModifyScreen({navigation, modalVisible=false, setModalVi
               modifyDiary.queryPublic,
               modifyDiary.public_tf).then(rs => {
             console.log(rs.payload.contents)}) }}/>
-      </View>
+      {/* </View>
       <View style={{
         height: 80,
         backgroundColor: '#FFFFFF', 
         width: '100%', 
         
-      }}>
+      }}> */}
       <TouchableOpacity style={styles.button} 
         onPress= {(text) => {
                   // title, contents, login.email;
@@ -162,18 +171,17 @@ export default function ModifyScreen({navigation, modalVisible=false, setModalVi
         .catch((error) => console.log( error.response.request._response ) );
 
                     }}>
-        <Text style={styles.buttonTitle}>Post</Text>
+        <Text style={styles.textStyle}>Post</Text>
       </TouchableOpacity>
-      <Pressable
-                  style={[styles.button2, styles.buttonClose]}
+      <TouchableOpacity style={styles.button2} 
                   onPress={() => { setModalVisible(false)}}
                 >
                   <Text style={styles.textStyle}>Cancel</Text>
-                </Pressable>
-    </View>
+      </TouchableOpacity>
+    </KeyboardAvoidingView>
     
         
-    </SafeAreaView>
+    // </SafeAreaView>
     
   );
 }
@@ -184,7 +192,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column', 
-    height: '100%'
+    // height: '100%'
   },
   title: {
     fontSize: 20,
@@ -208,16 +216,17 @@ const styles = StyleSheet.create({
       textStyle: {
         color: "#333333",
         fontSize: 15,
-        borderColor: '#333333',
-        borderTopWidth: 1,
-        paddingTop: 10,
+       // borderColor: '#333333',
+      //  borderTopWidth: 1,
+        
+      paddingTop: 10,
         width: '85%',
         alignSelf: 'center',
         height: 30,
         textAlign: "center"
       },
   button: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'center',
     alignContent: 'center',
     alignSelf: 'center',
@@ -225,11 +234,12 @@ const styles = StyleSheet.create({
     borderTopColor: '#333333',
     borderTopWidth: 1,
     backgroundColor: "#FFFFFF",
-    display:'flex',
+   //  display:'flex',
+   
     width: '80%',
-    height: 30,
-    paddingTop: 20,
-    // paddingBottom: 10,
+    height: 40,
+    // paddingTop: 10,
+    paddingBottom: 10,
     // marginTop: 10,
     // marginBottom: 10,
   },
@@ -237,18 +247,32 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#333333',
     height: 30,
-    position: 'relative'
+    paddingTop: 10
+  //   position: 'relative'
   },
   button2: {
-    // borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    
+    // flex: 1,
+    alignItems: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    borderTopColor: '#333333',
+    borderTopWidth: 1,
+    backgroundColor: "#FFFFFF",
+   //  display:'flex',
+   
+    width: '80%',
+    height: 70,
+    // paddingTop: 10,
+    paddingBottom: 40,
+    // marginTop: 10,
+    // marginBottom: 10,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
   buttonClose: {
+    // backgroundColor: "#FFFFFF",
     // backgroundColor: "#2196F3",
   },
 });
